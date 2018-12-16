@@ -1,0 +1,447 @@
+@import "../../until/less/until";
+.curr-detailActive{
+  width:60px !important;
+  height:26px !important;
+  line-height:26px !important;
+  text-align:center;
+  background:#ffaed8;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  color:#ffffff;
+  right:-5px !important;
+}
+.curr-detailActive + .curr-detail-line{
+  bottom:-1px !important;
+}
+
+/*页面底部*/
+     /*二级菜单*/
+
+.page-secondMenu{
+  width:12%;
+  background:url("../images/secondMenuBk .jpg") no-repeat;
+  background-size:cover;
+  background-position:center;
+  height:100%;
+  padding-top:100px;
+  position:absolute;
+  left:0;
+  top:0;
+  .secondMenuLi{
+    text-align:center;
+    width:100px;
+    height:26px;
+    font-size:16px;
+    margin-bottom:24px;
+    line-height:26px;
+    letter-spacing:2px;
+    font-weight:500;
+    cursor:pointer;
+  }
+}
+     /*页面右边主体内容*/
+.page-bodyRight{
+  width:88%;
+  height:100%;
+  background:url("../images/pageBkImgLarg.jpg") no-repeat;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  overflow: auto;
+  /*三级菜单*/
+  .page-thirdMenu{//三级菜单
+    width:12%;
+    background:url("../images/thirdMenuBk.jpg") no-repeat;
+    background-size:cover;
+    background-position:center;
+    height:100%;
+    padding-top:24px;
+    position:relative;
+    z-index:99;
+    .page-thirdMenuUl{
+      .page-thirdMenuLi{
+        .page-thirdMenuLi-time{
+          margin-left:10px;
+          font-size:14px;
+          cursor:pointer;
+        }
+        .curriculum-detail-ul{
+          width:80px;
+          position:relative;
+          .curriculum-detail-li{
+            margin-bottom:10px;
+            height:20px;
+            line-height:20px;
+            position:relative;
+            .curr-detail-line{
+              display:inline-block;
+              height:1px;
+              line-height:20px;
+              background:#ffaed8;
+              width:30px;
+              vertical-align:middle;
+              position:relative;
+              bottom:1px;
+            }
+            .curr-detail-text{
+              font-size:14px;
+              height:20px;
+              line-height:20px;
+              cursor:pointer;
+              position:absolute;
+              right:0;
+              width:50px;
+              text-align:center;
+            }
+          }
+          .curr-detail-leftLine{
+            width:1px;
+            background:#ffaed8;
+            height:calc(100% - 10px);
+            position:absolute;
+            top:0;
+            left:0;
+          }
+        }
+      }
+    }
+  }
+  /*右边内容*/
+  .page-rightContent{
+    width:100%;
+    position:absolute;
+    right:0;
+    top:9.4%;
+    z-index:1;
+    .page-contentBk{
+      width:71.4%;
+      height:100%;
+      padding:15px;
+      background:rgba(187,131,202,0.2);
+      background-image:-webkit-linear-gradient(right,rgba(255,255,255,0.2), rgba(187,131,202,0.2));
+      background-image:-o-linear-gradient(right,rgba(255,255,255,0.2), rgba(187,131,202,0.2));
+      background-image:-moz-linear-gradient(right,rgba(255,255,255,0.2), rgba(187,131,202,0.2));
+      background-image:-ms-linear-gradient(right,rgba(255,255,255,0.2), rgba(187,131,202,0.2));
+      background-image:linear-gradient(right,rgba(255,255,255,0.2), rgba(187,131,202,0.2));
+      /*渐变边框*/
+      .lineLearBorder{
+        padding:10px;
+        border-style:solid;
+        border-width:10px;
+        border-image: -webkit-linear-gradient( left,rgba(255,255,255,0.8), rgba(187,131,202,0.8)) 30 30;
+        border-image: -moz-linear-gradient(left,rgba(255,255,255,0.8), rgba(187,131,202,0.8)) 30 30;
+        border-image: -ms-linear-gradient( left,rgba(255,255,255,0.8), rgba(187,131,202,0.8)) 30 30;
+        border-image: linear-gradient( left,rgba(255,255,255,0.8), rgba(187,131,202,0.8)) 30 30;
+        border-color:rgba(255,255,255,0.8);
+      }
+      /*新建课程与课程列表*/
+      .curriculumInfoUL{
+        width:300px;
+        .curriculumInfoLi{
+          margin-bottom:5%;
+          height:22px;
+          line-height:22px;
+          .curr-nameImg{
+            margin-right:5px;
+            vertical-align:middle;
+            position:relative;
+            bottom:2px;
+          }
+          .curriculumInfoName{
+            letter-spacing:5px;
+            font-weight:500;
+            font-size:14px;
+            position:relative;
+          }
+          input{
+            width:180px;
+            vertical-align:middle;
+            height:20px;
+            position:relative;
+            bottom:3px;
+            text-align:center;
+            border:solid 1px #d52d81;
+          }
+          .curr-curriculumName{
+            border:none;
+            border-bottom:solid 1px #d52d81;
+          }
+          .curr-curriculumDate{
+          }
+          .curr-curriculumTime{
+            width:25%;
+          }
+          .time-line{
+            display:inline-block;
+            width:5%;
+            height:1px;
+            background:#d52d81;
+            margin:0 5px;
+            position:relative;
+            bottom:4px;
+          }
+          .curr-coverImg{
+            width:40% !important;
+          }
+          .chooseImg{
+            width:20%;
+            margin-left:5px;
+            background-image:linear-gradient(#ededed,#cccccc);
+            padding:0 5px;
+            text-align:center;
+          }
+        }
+        .curr-dateLi{
+          label{
+            margin-left:3px;
+            margin-right:1px;
+          }
+        }
+        .curr-coverLi{
+          height:110px;
+          .coverBox{
+            padding-top:10px;
+            padding-left:20%;
+            .coverImgBox{
+              width:90px;
+              height:60px;
+              line-height:60px;
+              background:#ffaed8;
+              overflow: hidden;
+              img{
+                width:100%;
+                vertical-align:middle;
+              }
+            }
+            .coverText{
+              width:120px;
+              margin-left:10px;
+              margin-top:10px;
+              line-height:14px;
+            }
+          }
+
+          .coverTitleBox{
+            label{
+              margin-right:3px;
+            }
+          }
+          .fileBox{
+            display:inline-block;
+            width:60%;
+            position:relative;
+            height:24px;
+            line-height:24px;
+            overflow: hidden;
+            .curr-nameImg{
+              margin-top:0;
+            }
+            .showFileText{
+              position:absolute;
+              left:0;
+              top:1px;
+              width:60%;
+            }
+            .chooseImgBtn{
+              color:#ffffff;
+              position:absolute;
+              right:0;
+              top:-2px;
+              background:#ffaed8;
+              text-align:center;
+              padding:0 5px;
+              cursor:pointer;
+              font-size:14px;
+            }
+            .fileImg{
+              position:absolute;
+              width:100%;
+              left:0;
+              top:0;
+              z-index:999;
+              opacity:0;
+              cursor:pointer;
+            }
+          }
+        }
+        .curr-explainLi{
+          height:46px;
+          label{
+            vertical-align:top;
+            margin-right:7px;
+          }
+          .curr-nameImg{
+            bottom:0px;
+          }
+          .curr-explain{
+            width:180px;
+            height:44px;
+            border:solid 1px #d52d81;
+          }
+
+        }
+        .curr-publishLi{
+          .curr-publishText{
+            width:25%;
+            text-align:right;
+            display:inline-block;
+            margin-right:10px;
+          }
+          .isPublishBox{
+            width:60%;
+            display:inline-block;
+            height:22px;
+            line-height:22px;
+            .curr-isPublish{
+              width:14px;
+              height:14px;
+            }
+            input[type="radio"] + label::before {
+              content: "\a0"; /*不换行空格*/
+              display: inline-block;
+              vertical-align: middle;
+              font-size: 14px;
+              width: 14px;
+              height: 14px;
+              margin-right: 5px;
+              border-radius: 50%;
+              border: 1px solid #d52d81;
+              text-indent: .15px;
+              line-height: 1;
+            }
+            input[type="radio"]:checked + label::before {
+              background-color: #d52d81;
+              background-clip: content-box;
+              padding: 2px;
+            }
+            input[type="radio"] {
+              position: absolute;
+              clip: rect(0, 0, 0, 0);
+            }
+            .curriculumInfoName{
+              margin-right:20px;
+            }
+
+          }
+
+        }
+      }
+      /*预约情况*/
+      .appointment-div{
+        width:72%;
+        margin-left:30px;
+        min-width:510px;
+        .appo-titleBox{
+          margin:0 0 20px 0;
+          .appo-title{
+            position:relative;
+            text-align:center;
+            display:inline-block;
+            padding:0 10px;
+            .app-title-bk{
+              width:100%;
+              height:14px;
+              -webkit-border-radius: 5px;
+              -moz-border-radius: 5px;
+              border-radius: 5px;
+              background:#d0ccd1;
+              position:absolute;
+              bottom:0;
+              left:0;
+              z-index:1;
+
+            }
+            .app-title-text{
+              position:relative;
+              z-index:99;
+              font-size:16px;
+              bottom:3px;
+              left:3px;
+              letter-spacing: 10px;
+            }
+          }
+        }
+        .appo-peopleNumberBox{
+          span{
+            letter-spacing: 5px;
+          }
+          .appo-peopleNumber{
+            margin-left:10px;
+          }
+        }
+        .appo-table{
+          background:rgba(255,255,255,0.6);
+          width:96%;
+          margin-top:10px;
+          padding:20px 0;
+          max-height:41%;
+          overflow:auto;
+          height:348px;
+          .appo-table-title{
+            .appo-table-titleUl{
+              li{
+                float:left;
+                font-size:14px;
+                border-bottom:solid 1px #999999;
+                padding:0 10px;
+                font-weight:bold;
+                height:28px;
+                line-height:28px;
+                text-align:center;
+                width:100px;
+                &:first-of-type{
+                  border-bottom:none;
+                  margin-left:20px;
+                }
+              }
+            }
+          }
+          .appo-table-info{
+            .appo-table-infoUl{
+              li{
+                float:left;
+                padding:0 10px;
+                height:28px;
+                line-height:28px;
+                width:100px;
+                white-space: nowrap;
+                text-align:center;
+                overflow:hidden;
+                &:last-of-type{
+                  max-width:150px;
+                }
+                &:first-of-type{
+                  margin-left:20px;
+                }
+              }
+            }
+          }
+        }
+
+      }
+    }
+    .curr-saveInfo{
+      margin:30px 0;
+      text-align:center;
+      span{
+        text-align:center;
+        display:inline-block;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        background:#505050;
+        width:165px;
+        height:22px;
+        color:#ffffff;
+        letter-spacing:20px;
+        font-size:14px;
+        text-indent:14px;
+        cursor:pointer;
+      }
+    }
+
+  }
+
+
+}

@@ -1,0 +1,39 @@
+.page-body {
+  background: url("../images/bkLarg.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  /*
+  .index-bodyTop{
+    img{
+      margin-top:4%;
+      width:58%;
+    }
+  }*/
+}
+.page-body .in-TextGroupUl {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+.page-body .in-TextGroupUl .in-TextLi {
+  text-align: center;
+}
+.page-body .in-TextGroupUl .in-TextLi img,
+.page-body .in-TextGroupUl .in-TextLi span {
+  vertical-align: middle;
+  margin-right: 7px;
+}
+.page-body .in-TextGroupUl .in-TextLi span {
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+.page-body .in-TextGroupUl .in-TextLi:first-of-type span {
+  color: #2d8cf0;
+}
+@media screen and (max-width: 1200px) {
+  .page-body .in-TextGroupUl .in-TextLi span {
+    font-size: 12px;
+  }
+}
+/*# sourceMappingURL=index.css.map */

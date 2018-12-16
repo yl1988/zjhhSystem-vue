@@ -1,0 +1,459 @@
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.none {
+  display: none;
+}
+.block {
+  display: block;
+}
+.inlineBlock {
+  display: inline-block;
+}
+.inline {
+  display: inline;
+}
+.red {
+  color: red;
+}
+.scrollnone {
+  -ms-scroll-chaining: chained;
+  -ms-content-zooming: zoom;
+  -ms-scroll-rails: none;
+  -ms-content-zoom-limit-min: 100%;
+  -ms-content-zoom-limit-max: 500%;
+  -ms-scroll-snap-type: proximity;
+  -ms-scroll-snap-points-x: snapList(100%, 200%, 300%, 400%, 500%);
+  -ms-overflow-style: none;
+  overflow: auto;
+}
+.scrollnone::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+.scrollnone::-webkit-scrollbar-button,
+.scrollnone ::-webkit-scrollbar-track,
+.scrollnone ::-webkit-scrollbar-track-piece,
+.scrollnone ::-webkit-scrollbar-thumb,
+.scrollnone ::-webkit-scrollbar-corner,
+.scrollnone ::-webkit-resizer {
+  background-color: rgba(0, 0, 0, 0);
+}
+.curr-detailActive {
+  width: 60px !important;
+  height: 26px !important;
+  line-height: 26px !important;
+  text-align: center;
+  background: #ffaed8;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  color: #ffffff;
+  right: -5px !important;
+}
+.curr-detailActive + .curr-detail-line {
+  bottom: -1px !important;
+}
+/*页面底部*/
+/*二级菜单*/
+.page-secondMenu {
+  width: 12%;
+  background: url("../images/secondMenuBk .jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  padding-top: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.page-secondMenu .secondMenuLi {
+  text-align: center;
+  width: 100px;
+  height: 26px;
+  font-size: 16px;
+  margin-bottom: 24px;
+  line-height: 26px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  cursor: pointer;
+}
+/*页面右边主体内容*/
+.page-bodyRight {
+  width: 88%;
+  height: 100%;
+  background: url("../images/pageBkImgLarg.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: auto;
+  /*三级菜单*/
+  /*右边内容*/
+}
+.page-bodyRight .page-thirdMenu {
+  width: 12%;
+  background: url("../images/thirdMenuBk.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  padding-top: 24px;
+  position: relative;
+  z-index: 99;
+}
+.page-bodyRight .page-thirdMenu .page-thirdMenuUl .page-thirdMenuLi .page-thirdMenuLi-time {
+  margin-left: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.page-bodyRight .page-thirdMenu .page-thirdMenuUl .page-thirdMenuLi .curriculum-detail-ul {
+  width: 80px;
+  position: relative;
+}
+.page-bodyRight .page-thirdMenu .page-thirdMenuUl .page-thirdMenuLi .curriculum-detail-ul .curriculum-detail-li {
+  margin-bottom: 10px;
+  height: 20px;
+  line-height: 20px;
+  position: relative;
+}
+.page-bodyRight .page-thirdMenu .page-thirdMenuUl .page-thirdMenuLi .curriculum-detail-ul .curriculum-detail-li .curr-detail-line {
+  display: inline-block;
+  height: 1px;
+  line-height: 20px;
+  background: #ffaed8;
+  width: 30px;
+  vertical-align: middle;
+  position: relative;
+  bottom: 1px;
+}
+.page-bodyRight .page-thirdMenu .page-thirdMenuUl .page-thirdMenuLi .curriculum-detail-ul .curriculum-detail-li .curr-detail-text {
+  font-size: 14px;
+  height: 20px;
+  line-height: 20px;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  width: 50px;
+  text-align: center;
+}
+.page-bodyRight .page-thirdMenu .page-thirdMenuUl .page-thirdMenuLi .curriculum-detail-ul .curr-detail-leftLine {
+  width: 1px;
+  background: #ffaed8;
+  height: calc(100% - 10px);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.page-bodyRight .page-rightContent {
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 9.4%;
+  z-index: 1;
+}
+.page-bodyRight .page-rightContent .page-contentBk {
+  width: 71.4%;
+  height: 100%;
+  padding: 15px;
+  background: rgba(187, 131, 202, 0.2);
+  background-image: -webkit-linear-gradient(right, rgba(255, 255, 255, 0.2), rgba(187, 131, 202, 0.2));
+  background-image: -o-linear-gradient(right, rgba(255, 255, 255, 0.2), rgba(187, 131, 202, 0.2));
+  background-image: -moz-linear-gradient(right, rgba(255, 255, 255, 0.2), rgba(187, 131, 202, 0.2));
+  background-image: -ms-linear-gradient(right, rgba(255, 255, 255, 0.2), rgba(187, 131, 202, 0.2));
+  background-image: linear-gradient(right, rgba(255, 255, 255, 0.2), rgba(187, 131, 202, 0.2));
+  /*渐变边框*/
+  /*新建课程与课程列表*/
+  /*预约情况*/
+}
+.page-bodyRight .page-rightContent .page-contentBk .lineLearBorder {
+  padding: 10px;
+  border-style: solid;
+  border-width: 10px;
+  border-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.8), rgba(187, 131, 202, 0.8)) 30 30;
+  border-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0.8), rgba(187, 131, 202, 0.8)) 30 30;
+  border-image: -ms-linear-gradient(left, rgba(255, 255, 255, 0.8), rgba(187, 131, 202, 0.8)) 30 30;
+  border-image: linear-gradient(left, rgba(255, 255, 255, 0.8), rgba(187, 131, 202, 0.8)) 30 30;
+  border-color: rgba(255, 255, 255, 0.8);
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL {
+  width: 300px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curriculumInfoLi {
+  margin-bottom: 5%;
+  height: 22px;
+  line-height: 22px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curriculumInfoLi .curr-nameImg {
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative;
+  bottom: 2px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curriculumInfoLi .curriculumInfoName {
+  letter-spacing: 5px;
+  font-weight: 500;
+  font-size: 14px;
+  position: relative;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curriculumInfoLi input {
+  width: 180px;
+  vertical-align: middle;
+  height: 20px;
+  position: relative;
+  bottom: 3px;
+  text-align: center;
+  border: solid 1px #d52d81;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curriculumInfoLi .curr-curriculumName {
+  border: none;
+  border-bottom: solid 1px #d52d81;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curriculumInfoLi .curr-curriculumTime {
+  width: 25%;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curriculumInfoLi .time-line {
+  display: inline-block;
+  width: 5%;
+  height: 1px;
+  background: #d52d81;
+  margin: 0 5px;
+  position: relative;
+  bottom: 4px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curriculumInfoLi .curr-coverImg {
+  width: 40% !important;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curriculumInfoLi .chooseImg {
+  width: 20%;
+  margin-left: 5px;
+  background-image: linear-gradient(#ededed, #cccccc);
+  padding: 0 5px;
+  text-align: center;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-dateLi label {
+  margin-left: 3px;
+  margin-right: 1px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-coverLi {
+  height: 110px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-coverLi .coverBox {
+  padding-top: 10px;
+  padding-left: 20%;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-coverLi .coverBox .coverImgBox {
+  width: 90px;
+  height: 60px;
+  line-height: 60px;
+  background: #ffaed8;
+  overflow: hidden;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-coverLi .coverBox .coverImgBox img {
+  width: 100%;
+  vertical-align: middle;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-coverLi .coverBox .coverText {
+  width: 120px;
+  margin-left: 10px;
+  margin-top: 10px;
+  line-height: 14px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-coverLi .coverTitleBox label {
+  margin-right: 3px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-coverLi .fileBox {
+  display: inline-block;
+  width: 60%;
+  position: relative;
+  height: 24px;
+  line-height: 24px;
+  overflow: hidden;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-coverLi .fileBox .curr-nameImg {
+  margin-top: 0;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-coverLi .fileBox .showFileText {
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 60%;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-coverLi .fileBox .chooseImgBtn {
+  color: #ffffff;
+  position: absolute;
+  right: 0;
+  top: -2px;
+  background: #ffaed8;
+  text-align: center;
+  padding: 0 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-coverLi .fileBox .fileImg {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  opacity: 0;
+  cursor: pointer;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-explainLi {
+  height: 46px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-explainLi label {
+  vertical-align: top;
+  margin-right: 7px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-explainLi .curr-nameImg {
+  bottom: 0px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-explainLi .curr-explain {
+  width: 180px;
+  height: 44px;
+  border: solid 1px #d52d81;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-publishLi .curr-publishText {
+  width: 25%;
+  text-align: right;
+  display: inline-block;
+  margin-right: 10px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-publishLi .isPublishBox {
+  width: 60%;
+  display: inline-block;
+  height: 22px;
+  line-height: 22px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-publishLi .isPublishBox .curr-isPublish {
+  width: 14px;
+  height: 14px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-publishLi .isPublishBox input[type="radio"] + label::before {
+  content: "\a0";
+  /*不换行空格*/
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+  border-radius: 50%;
+  border: 1px solid #d52d81;
+  text-indent: 0.15px;
+  line-height: 1;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-publishLi .isPublishBox input[type="radio"]:checked + label::before {
+  background-color: #d52d81;
+  background-clip: content-box;
+  padding: 2px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-publishLi .isPublishBox input[type="radio"] {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+.page-bodyRight .page-rightContent .page-contentBk .curriculumInfoUL .curr-publishLi .isPublishBox .curriculumInfoName {
+  margin-right: 20px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .appointment-div {
+  width: 72%;
+  margin-left: 30px;
+  min-width: 510px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .appointment-div .appo-titleBox {
+  margin: 0 0 20px 0;
+}
+.page-bodyRight .page-rightContent .page-contentBk .appointment-div .appo-titleBox .appo-title {
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  padding: 0 10px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .appointment-div .appo-titleBox .appo-title .app-title-bk {
+  width: 100%;
+  height: 14px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background: #d0ccd1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+.page-bodyRight .page-rightContent .page-contentBk .appointment-div .appo-titleBox .appo-title .app-title-text {
+  position: relative;
+  z-index: 99;
+  font-size: 16px;
+  bottom: 3px;
+  left: 3px;
+  letter-spacing: 10px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .appointment-div .appo-peopleNumberBox span {
+  letter-spacing: 5px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .appointment-div .appo-peopleNumberBox .appo-peopleNumber {
+  margin-left: 10px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .appointment-div .appo-table {
+  background: rgba(255, 255, 255, 0.6);
+  width: 96%;
+  margin-top: 10px;
+  padding: 20px 0;
+  max-height: 41%;
+  overflow: auto;
+  height: 348px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .appointment-div .appo-table .appo-table-title .appo-table-titleUl li {
+  float: left;
+  font-size: 14px;
+  border-bottom: solid 1px #999999;
+  padding: 0 10px;
+  font-weight: bold;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  width: 100px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .appointment-div .appo-table .appo-table-title .appo-table-titleUl li:first-of-type {
+  border-bottom: none;
+  margin-left: 20px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .appointment-div .appo-table .appo-table-info .appo-table-infoUl li {
+  float: left;
+  padding: 0 10px;
+  height: 28px;
+  line-height: 28px;
+  width: 100px;
+  white-space: nowrap;
+  text-align: center;
+  overflow: hidden;
+}
+.page-bodyRight .page-rightContent .page-contentBk .appointment-div .appo-table .appo-table-info .appo-table-infoUl li:last-of-type {
+  max-width: 150px;
+}
+.page-bodyRight .page-rightContent .page-contentBk .appointment-div .appo-table .appo-table-info .appo-table-infoUl li:first-of-type {
+  margin-left: 20px;
+}
+.page-bodyRight .page-rightContent .curr-saveInfo {
+  margin: 30px 0;
+  text-align: center;
+}
+.page-bodyRight .page-rightContent .curr-saveInfo span {
+  text-align: center;
+  display: inline-block;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  background: #505050;
+  width: 165px;
+  height: 22px;
+  color: #ffffff;
+  letter-spacing: 20px;
+  font-size: 14px;
+  text-indent: 14px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=curriculum.css.map */

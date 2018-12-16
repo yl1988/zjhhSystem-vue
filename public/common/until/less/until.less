@@ -1,0 +1,40 @@
+.left{
+  float:left;
+}
+.right{
+  float:right;
+}
+.none{
+  display:none;
+}
+.block{
+  display:block;
+}
+.inlineBlock{
+  display:inline-block;;
+}
+.inline{
+  display:inline;
+}
+.red{
+  color:red;
+}
+.scrollnone{
+  -ms-scroll-chaining: chained;
+  -ms-overflow-style: none;
+  -ms-content-zooming: zoom;
+  -ms-scroll-rails: none;
+  -ms-content-zoom-limit-min: 100%;
+  -ms-content-zoom-limit-max: 500%;
+  -ms-scroll-snap-type: proximity;
+  -ms-scroll-snap-points-x: snapList(100%, 200%, 300%, 400%, 500%);
+  -ms-overflow-style: none;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width:0px;
+    height:0px;
+}
+  &::-webkit-scrollbar-button,::-webkit-scrollbar-track,::-webkit-scrollbar-track-piece,::-webkit-scrollbar-thumb,::-webkit-scrollbar-corner,::-webkit-resizer {
+    background-color:rgba(0,0,0,0);
+  }
+}

@@ -1,0 +1,105 @@
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.none {
+  display: none;
+}
+.block {
+  display: block;
+}
+.inlineBlock {
+  display: inline-block;
+}
+.inline {
+  display: inline;
+}
+.red {
+  color: red;
+}
+.scrollnone {
+  -ms-scroll-chaining: chained;
+  -ms-content-zooming: zoom;
+  -ms-scroll-rails: none;
+  -ms-content-zoom-limit-min: 100%;
+  -ms-content-zoom-limit-max: 500%;
+  -ms-scroll-snap-type: proximity;
+  -ms-scroll-snap-points-x: snapList(100%, 200%, 300%, 400%, 500%);
+  -ms-overflow-style: none;
+  overflow: auto;
+}
+.scrollnone::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+.scrollnone::-webkit-scrollbar-button,
+.scrollnone ::-webkit-scrollbar-track,
+.scrollnone ::-webkit-scrollbar-track-piece,
+.scrollnone ::-webkit-scrollbar-thumb,
+.scrollnone ::-webkit-scrollbar-corner,
+.scrollnone ::-webkit-resizer {
+  background-color: rgba(0, 0, 0, 0);
+}
+* {
+  margin: 0 auto;
+  font-family: "PingFang SC,Microsoft YaHei", "微软雅黑", "黑体", "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  color: #333333;
+  list-style: none;
+  padding: 0;
+  font-size: 12px;
+}
+.clear {
+  clear: both;
+  overflow: hidden;
+}
+.clear::after {
+  display: table;
+  content: '';
+  font-size: 0;
+}
+a {
+  text-decoration: none;
+}
+.navActive {
+  background: url("../images/daohanglan.png") no-repeat !important;
+  background-size: contain;
+}
+.navActive a {
+  color: #ffffff !important;
+}
+.secondMenuActive {
+  background: #101010;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  color: #c0c0c0;
+}
+input,
+button,
+textarea {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+html {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+body {
+  height: 100%;
+  overflow: auto;
+  min-width: 1200px;
+  min-height: 600px;
+  padding: 0;
+  margin: 0;
+}
+/*页面底部*/
+.page-body {
+  height: 82.4%;
+  width: 100%;
+  position: relative;
+}
+/*# sourceMappingURL=common.css.map */

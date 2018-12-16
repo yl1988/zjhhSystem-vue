@@ -1,0 +1,65 @@
+@import "../until/less/until";
+*{
+  margin:0 auto;
+  font-family: "PingFang SC,Microsoft YaHei","微软雅黑","黑体","Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  color:#333333;
+  list-style:none;
+  padding:0;
+  font-size:12px;
+}
+.clear{
+  clear:both;
+  overflow:hidden;
+  &::after{
+    display: table;
+    content:'';
+    font-size:0;
+  }
+}
+a{
+  text-decoration:none;
+}
+.navActive{//主菜单选中
+  background:url("../images/daohanglan.png") no-repeat !important;
+  background-size:contain;
+  a{
+    color:#ffffff !important;
+  }
+}
+.secondMenuActive{//二级菜单选中
+  background:#101010;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  color:#c0c0c0;
+}
+
+input,button,textarea{
+  outline:none;
+  border:none;
+  background-color:transparent;
+}
+html{
+  //background:#333333;
+  height:100%;
+  padding:0;
+  margin:0;
+}
+body{
+  //width:1200px;
+ // height:600px;
+ // margin:0 auto;
+  //background:#ffffff;
+  height:100%;
+  overflow: auto;
+  min-width:1200px;
+  min-height:600px;
+  padding:0;
+  margin:0;
+}
+/*页面底部*/
+.page-body{
+  height:82.4%;
+  width:100%;
+  position:relative;
+}
