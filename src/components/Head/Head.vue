@@ -9,10 +9,10 @@
         </div>
         <div class="navBox">
             <ul class="nav-ul clear">
-                <li class="nav-li right" :class="{navActive:'/system'===$route.path}" @click="goTo('/system')"><a href="javascript:;">系统管理</a></li>
-                <li class="nav-li right" :class="{navActive:'/forms'===$route.path}" @click="goTo('/forms')"><a href="javascript:;">报表中心</a></li>
-                <li class="nav-li right" :class="{navActive:'/shops'===$route.path}" @click="goTo('/shops')"><a href="javascript:;">商城管理</a></li>
-                <li class="nav-li right" :class="{navActive:'/curriculum'===$route.path}" @click="goTo('/curriculum')"><a href="javascript:;">课程管理</a></li>
+                <li class="nav-li right" :class="{navActive: /^\/system/.test(this.$route.path)}" @click="goTo('/system')"><a href="javascript:;">系统管理</a></li>
+                <li class="nav-li right" :class="{navActive:/^\/forms/.test(this.$route.path)}" @click="goTo('/forms')"><a href="javascript:;">报表中心</a></li>
+                <li class="nav-li right" :class="{navActive:/^\/shops/.test(this.$route.path)}" @click="goTo('/shops')"><a href="javascript:;">商城管理</a></li>
+                <li class="nav-li right" :class="{navActive:/^\/curriculum/.test(this.$route.path)}" @click="goTo('/curriculum')"><a href="javascript:;">课程管理</a></li>
             </ul>
         </div>
 
@@ -21,7 +21,6 @@
 
 <script>
     export default {
-        name: 'head',
         data() {
             return{
                 timeData : '',
@@ -32,7 +31,6 @@
         methods: {
             goTo(path){
                 this.$router.push(path)
-                this.timeData = path
             },
             /*退出*/
             signOut(){
@@ -63,7 +61,33 @@
             }
         },
         computed:{
+            thisPath (){
+               let pashArr = [
+                   /^\/curriculum/,
+                  /^\/shops/,
+                   /^\/forms/,
+                   /^\/system/
+               ]
+              // console.log(this.$route.path)
+                let path = this.$route.path
+               pashArr.forEach((item, index) => {
+                  // console.log(item)
+                    //return item.test(this.$route.path) && true
+                })
+            },
+            isSystem () {
+                let path = this.$route.path.split('/')
+                console.log(path)
+            },
+            //isCurriculum () {
 
+           // },
+            isShops () {
+
+            },
+            isForms () {
+
+            }
         },
         mounted() {
             this.$nextTick(()=>{
@@ -80,6 +104,7 @@
 </script>
 
 <style lang="less" type="text/less">
+    @import "../../../public/common/until/less/until";
     /*页面头部*/
     .page-top{
         height:17.6%;

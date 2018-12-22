@@ -22,7 +22,7 @@
                     <span class="red" :class="{none:name.trim()}" id="tipTextName">{{nameErrMsg}}</span>
                     <span class="red" :class="{none:pwd.trim()}" id="tipTextPwd">{{pwdErrMsg}}</span>
                 </div>
-                <span class="loginButton" id="btn" @submit.prevent="login()"></span>
+                <span class="loginButton" id="btn" @click="trimFun('pwd',false);trimFun('user',false);login()"></span>
             </form>
         </div>
     </div>
@@ -40,7 +40,7 @@
             }
         },
         methods:{
-         login (event) {//登录
+         async login () {//登录
             // var name = $('#name').val().trim()
             //var pwd = $('#password').val().trim()
            // var tipName = $('#tipTextName')
@@ -84,6 +84,14 @@
         }
         */
              //console.log(event)
+             let result
+             let {name,pwd} =this
+             name = name.trim()
+             pwd = pwd.trim()
+             if(name && pwd){
+                 //发送异步ajax请求
+                result = await reqPwdLogin({name,pwd})
+             }
         },
             /*
             给错误提示文字赋值
