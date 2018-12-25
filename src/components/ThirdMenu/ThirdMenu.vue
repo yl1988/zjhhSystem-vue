@@ -6,7 +6,7 @@
                 <p class="page-thirdMenuLi-time" title="time" :data-time_index="index">{{list.time}}</p>
                 <ul class="curriculum-detail-ul" v-show="list.isShow">
                     <li class="curr-detail-leftLine"></li>
-                    <li class="curriculum-detail-li" v-for="(name, i) in list.names" :key="i">
+                    <li class="curriculum-detail-li" v-for="(name, i) in list.contents" :key="i">
                         <span class="curr-detail-text" title="name" :class="{'curr-detailActive':name.isBkColor}" :data-name_index="i" :data-parent_index="index">{{name.title}}</span>
                         <span class="curr-detail-line"></span>
                     </li>
@@ -37,23 +37,34 @@
                     }
                     this.listArr[time_index].isShow = true
                     /*清除所有子元素的底色*/
-                    for(let j=0;j<this.listArr[time_index].names.length;j++){
-                        this.listArr[time_index].names[j].isBkColor = false
+                    for(let j=0;j<this.listArr[time_index].contents.length;j++){
+                        this.listArr[time_index].contents[j].isBkColor = false
                     }
-                    this.listArr[time_index].names[0].isBkColor = true
+                    this.listArr[time_index].contents[0].isBkColor = true
                 } else if(e.target.getAttribute('title') === 'name'){//设置课程名称底色
                     time_index = e.target.dataset.parent_index
                     for(let i=0;i<this.listArr.length;i++){
-                        for(let j=0;j<this.listArr[i].names.length;j++){
-                            this.listArr[i].names[j].isBkColor = false
+                        for(let j=0;j<this.listArr[i].contents.length;j++){
+                            this.listArr[i].contents[j].isBkColor = false
                         }
                     }
-                    this.listArr[time_index].names[name_index].isBkColor = true
+                    this.listArr[time_index].contents[name_index].isBkColor = true
+                    let indexObj = {
+                        time_index,
+                        name_index
+                    }
+                    this.$emit('getInfos',indexObj)
                 }
             },
             showFirst(){
+                for(let i=0;i<this.listArr.length;i++){
+                    this.listArr[i].isShow = false
+                    for(let j=0;j<this.listArr[i].contents.length;j++){
+                        this.listArr[i].contents[j].isBkColor = false
+                    }
+                }
                 this.listArr[0].isShow = true
-                this.listArr[0].names[0].isBkColor= true
+                this.listArr[0].contents[0].isBkColor= true
             }
         },
         computed: {
@@ -67,7 +78,11 @@
             }
         },
         mounted(){
-          this.showFirst()//加载时默认展开第一个显示第一个课程底色
+            this.$nextTick(()=>{
+                setTimeout(()=>{
+                    this.showFirst()//加载时默认展开第一个显示第一个课程底色
+                },500)
+            })
         }
     }
 </script>

@@ -123,15 +123,16 @@
             span{
                 width:20px;
                 height: 20px;
+                line-height:20px;
                 border:solid 1px #333333;
+                &:hover{
+                    border-color:#d52d81;
+                }
             }
         }
         .paging-right{
             display:inline-block;
             &:extend(.height50);
-            span{
-
-            }
             input{
                 width:30px;
                 padding:3px;

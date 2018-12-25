@@ -1,6 +1,6 @@
 <template>
     <div class="page-bodyRight right">
-        <third-menu :isList = isList />
+        <third-menu :isList = isList @getInfos="getInfos"/>
         <!--预约情况-->
         <div class="page-rightContent appointment" id="appointment">
             <div class="page-contentBk">
@@ -9,13 +9,13 @@
                         <div class="appo-titleBox">
                             <div class="appo-title">
                                 <span class="app-title-bk"></span>
-                                <strong class="app-title-text" id="app-title-text">课程1</strong>
+                                <strong class="app-title-text" id="app-title-text">{{contents && contents.title}}</strong>
                             </div>
                         </div>
                         <div class="appo-peopleNumberBox">
                             <span class="appo-peopleNumberTitle">当前预约人数:</span>
-                            <span class="appo-peopleNumber">5</span>
-                            <span class="appo-peopleTotalNumber">/10人</span>
+                            <span class="appo-peopleNumber">{{contents.appinInfos && contents.appinInfos.length}}</span>
+                            <span class="appo-peopleTotalNumber">/{{contents && contents.totalNumber}}人</span>
                         </div>
                         <ul class="appo-table right">
                             <li class="appo-table-title">
@@ -26,84 +26,12 @@
                                     <li class="appo-table-titleText">邮箱</li>
                                 </ul>
                             </li>
-                            <li class="appo-table-info">
+                            <li class="appo-table-info" v-for="(appinInfo,index) in contents.appinInfos" :key="index">
                                 <ul class="appo-table-infoUl clear clear">
-                                    <li class="appo-table-infoText">张三三三</li>
-                                    <li class="appo-table-infoText">普通用户</li>
-                                    <li class="appo-table-infoText">男</li>
-                                    <li class="appo-table-infoText">aarrrrrrrrrrrrrrrrrrrrrrrrrrrra@qq.com</li>
-                                </ul>
-                            </li>
-                            <li class="appo-table-info">
-                                <ul class="appo-table-infoUl clear">
-                                    <li class="appo-table-infoText">张三</li>
-                                    <li class="appo-table-infoText">普通用户</li>
-                                    <li class="appo-table-infoText">男</li>
-                                    <li class="appo-table-infoText">aaa@qq.com</li>
-                                </ul>
-                            </li>
-                            <li class="appo-table-info">
-                                <ul class="appo-table-infoUl clear">
-                                    <li class="appo-table-infoText">张三</li>
-                                    <li class="appo-table-infoText">普通用户</li>
-                                    <li class="appo-table-infoText">男</li>
-                                    <li class="appo-table-infoText">aaa@qq.com</li>
-                                </ul>
-                            </li>
-                            <li class="appo-table-info">
-                                <ul class="appo-table-infoUl clear">
-                                    <li class="appo-table-infoText">张三</li>
-                                    <li class="appo-table-infoText">普通用户</li>
-                                    <li class="appo-table-infoText">男</li>
-                                    <li class="appo-table-infoText">aaa@qq.com</li>
-                                </ul>
-                            </li>
-                            <li class="appo-table-info">
-                                <ul class="appo-table-infoUl clear">
-                                    <li class="appo-table-infoText">张三</li>
-                                    <li class="appo-table-infoText">普通用户</li>
-                                    <li class="appo-table-infoText">男</li>
-                                    <li class="appo-table-infoText">aaa@qq.com</li>
-                                </ul>
-                            </li>
-                            <li class="appo-table-info">
-                                <ul class="appo-table-infoUl clear">
-                                    <li class="appo-table-infoText">张三</li>
-                                    <li class="appo-table-infoText">普通用户</li>
-                                    <li class="appo-table-infoText">男</li>
-                                    <li class="appo-table-infoText">aaa@qq.com</li>
-                                </ul>
-                            </li>
-                            <li class="appo-table-info">
-                                <ul class="appo-table-infoUl clear">
-                                    <li class="appo-table-infoText">张三</li>
-                                    <li class="appo-table-infoText">普通用户</li>
-                                    <li class="appo-table-infoText">男</li>
-                                    <li class="appo-table-infoText">aaa@qq.com</li>
-                                </ul>
-                            </li>
-                            <li class="appo-table-info">
-                                <ul class="appo-table-infoUl clear">
-                                    <li class="appo-table-infoText">张三</li>
-                                    <li class="appo-table-infoText">普通用户</li>
-                                    <li class="appo-table-infoText">男</li>
-                                    <li class="appo-table-infoText">aaa@qq.com</li>
-                                </ul>
-                            </li>
-                            <li class="appo-table-info">
-                                <ul class="appo-table-infoUl clear">
-                                    <li class="appo-table-infoText">张三</li>
-                                    <li class="appo-table-infoText">普通用户</li>
-                                    <li class="appo-table-infoText">男</li>
-                                    <li class="appo-table-infoText">aaa@qq.com</li>
-                                </ul>
-                            </li>
-                            <li class="appo-table-info">
-                                <ul class="appo-table-infoUl clear">
-                                    <li class="appo-table-infoText">张三</li>
-                                    <li class="appo-table-infoText">普通用户</li>
-                                    <li class="appo-table-infoText">男</li>
-                                    <li class="appo-table-infoText">aaa@qq.com</li>
+                                    <li class="appo-table-infoText">{{appinInfo.name}}</li>
+                                    <li class="appo-table-infoText">{{appinInfo.userClassify}}</li>
+                                    <li class="appo-table-infoText">{{appinInfo.sex}}</li>
+                                    <li class="appo-table-infoText">{{appinInfo.email}}</li>
                                 </ul>
                             </li>
                         </ul>
@@ -117,6 +45,7 @@
 <script>
     import ThirdMenu from '../../../components/ThirdMenu/ThirdMenu'
     import Paging from '../../../components/Paging/Paging'
+    import {mapState} from 'vuex'
     export default {
         name: 'appointment',
         props:{
@@ -126,13 +55,33 @@
             return {
                 totalPage: 20,
                 currentPage: 1,
-                pagegroup: 5
+                pagegroup: 5,
+                contents:[]
             }
 
         },
         components:{
             ThirdMenu,
             Paging
+        },
+        methods:{
+            getInfos(indexObj){
+                let {time_index,name_index} = indexObj
+                this.contents = this.appoinLists[time_index].contents[name_index]
+                this.$nextTick(()=>{
+                    this.$zj_globalMethods.setBkCoror('.appo-table-info')
+                })
+
+            }
+        },
+        computed:{
+            ...mapState(['appoinLists'])
+        },
+        mounted(){
+            this.contents= this.appoinLists[0].contents[0]
+            this.$nextTick(()=>{
+                this.$zj_globalMethods.setBkCoror('.appo-table-info')
+            })
         }
     }
 </script>

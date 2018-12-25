@@ -2,16 +2,41 @@
     <!--二级菜单-->
     <ul class="page-secondMenu">
         <router-link tag="li" :to="{path:menuTitle.path}" class="secondMenuLi" :class="{secondMenuActive:$route.path === menuTitle.path}"
-        v-for="(menuTitle, index) in menuTitleData" :key="index">{{menuTitle.title}}</router-link>
+        v-for="(menuTitle, index) in menuTitleData" :key="index" @click.native="getFirst">{{menuTitle.title}}</router-link>
     </ul>
 </template>
 
 <script>
+    import {mapState} from 'vuex'
     export default {
         props:{
            menuTitleData: Array
         },
         methods:{
+            getFirst(){
+                switch (this.$route.path) {
+                    case '/curriculum/newcurriculum':
+                        break
+                    case '/curriculum/curriculumlist':
+                        this.$store.dispatch('getCurrLists')
+                        console.log(this.currLists)
+                        /*1s后将取到的数据缓存到本地*/
+                        let currListInfo = this.currLists[0].contents[0].currListInfo
+                        let item = 'currListInfo'
+                        this.$zj_globalMethods.setLocalStorage(item,currListInfo)
+                        console.log(currListInfo)
+                        break
+                    case '/curriculum/appointment':
+                        break
+                }
+                console.log(this.$route.path)
+            }
+        },
+        computed:{
+            ...mapState(['currLists'])
+        },
+        mounted(){
+           // console.log(this.$route.path)
         }
     }
 </script>

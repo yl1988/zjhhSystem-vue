@@ -3,6 +3,9 @@ import ajax from './ajax'
 export const reqDefault = ()=> ajax('/default')
 export const reqShops = ()=> ajax('/shops')
 export const reqCurriculum = ()=> ajax('/curriculum')
+//export const reqCurriList = ()=> ajax('/curriculum/curriculumlist')
+export const reqCurriList = ()=> ajax('/curriculum/curriculumlist')
+export const reqCurriAppo = ()=> ajax('/curriculum/appointment')
 export const reqSystem = ()=> ajax('/system')
 export const reqForms = ()=> ajax('/forms')
 export const reqLogin = ()=> ajax('/login')//请求登录页面

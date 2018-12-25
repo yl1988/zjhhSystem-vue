@@ -5,7 +5,7 @@
             <div class="page-contentBk">
                 <div class="lineLearBorder">
                     <div class="shopsClassifyBox">
-                        <div class="addClassifyBox"><button>新增品类</button></div>
+                        <div class="addClassifyBox"><button @click="goto()">新增品类</button></div>
                         <ul class="shopsClassifyTable clear">
                             <li class="shops_c_title">
                                 <strong class="classifyTitleName">品类名称</strong>
@@ -53,6 +53,11 @@
                        id:'4'
                    },
                ]
+            }
+        },
+        methods:{
+            goto(){
+                this.$router.replace('/shops/AddClassify')
             }
         }
     }
