@@ -29,9 +29,11 @@
         },
         methods:{
             showWitch(e){
-               let time_index = e.target.dataset.time_index
-                let name_index = e.target.dataset.name_index
-                if(e.target.getAttribute('title') === 'time'){//展开某天的课程名称表
+                e || window.event
+                let target = e.srcElement ? e.srcElement : e.target
+               let time_index = target.dataset ? target.dataset.time_index : target.getAttribute('data-time_index')
+                let name_index = target.dataset ? target.dataset.name_index : target.getAttribute('data-name_index')
+                if(target.getAttribute('title') === 'time'){//展开某天的课程名称表
                     for(let i=0;i<this.listArr.length;i++){
                         this.listArr[i].isShow = false
                     }
@@ -41,8 +43,13 @@
                         this.listArr[time_index].contents[j].isBkColor = false
                     }
                     this.listArr[time_index].contents[0].isBkColor = true
-                } else if(e.target.getAttribute('title') === 'name'){//设置课程名称底色
-                    time_index = e.target.dataset.parent_index
+                    let indexObj = {
+                        time_index,
+                        name_index:0
+                    }
+                    this.$emit('getInfos',indexObj)
+                } else if(target.getAttribute('title') === 'name'){//设置课程名称底色
+                    time_index = target.dataset ? target.dataset.parent_index : target.getAttribute('data-parent_index')
                     for(let i=0;i<this.listArr.length;i++){
                         for(let j=0;j<this.listArr[i].contents.length;j++){
                             this.listArr[i].contents[j].isBkColor = false
@@ -57,10 +64,20 @@
                 }
             },
             showFirst(){
-                for(let i=0;i<this.listArr.length;i++){
-                    this.listArr[i].isShow = false
-                    for(let j=0;j<this.listArr[i].contents.length;j++){
-                        this.listArr[i].contents[j].isBkColor = false
+                //console.log(this.listArr)
+                let listArr = this.$zj_globalMethods.getLocalStorage('listArr')
+                // console.log(listArr)
+                if(this.listArr.length === 0){
+                    for(let i=0;i<listArr.length;i++){
+                        this.listArr.push(listArr[i])
+                    }
+                    console.log(this.listArr)
+                }else {
+                    for(let i=0;i<this.listArr.length;i++){
+                        this.listArr[i].isShow = false
+                        for(let j=0;j<this.listArr[i].contents.length;j++){
+                            this.listArr[i].contents[j].isBkColor = false
+                        }
                     }
                 }
                 this.listArr[0].isShow = true
@@ -71,6 +88,7 @@
             ...mapState(['currLists','appoinLists']),
             listArr (){
                 if (this.isList) {
+                    //console.log(this.currLists)
                     return this.currLists
                 }else {
                     return this.appoinLists
@@ -81,8 +99,10 @@
             this.$nextTick(()=>{
                 setTimeout(()=>{
                     this.showFirst()//加载时默认展开第一个显示第一个课程底色
-                },500)
+                },0)
+
             })
+
         }
     }
 </script>

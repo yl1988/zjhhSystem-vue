@@ -16,15 +16,15 @@
             return {
                 menuTitleData:[
                     {
-                        title:'商品品类',
+                        title:'商品分类',
                         path:'/shops/shopsclassify'
-                    },
+                    },/*
                     {
                         title:'新增品类',
                         path:'/shops/AddClassify'
-                    },
+                    },*/
                     {
-                        title:'新建商品',
+                        title:'添加商品',
                         path:'/shops/newshops'
                     },
                     {
@@ -51,6 +51,9 @@
             }
         },
         methods: {
+        },
+        mounted() {
+           this.$store.dispatch('getShopClassify')
         }
     }
 </script>

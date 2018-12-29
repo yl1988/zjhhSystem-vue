@@ -83,6 +83,7 @@ a {
 }
 input,
 button,
+select,
 textarea {
   outline: none;
   border: none;
@@ -146,5 +147,161 @@ body {
   border-image: -ms-linear-gradient(left, rgba(255, 255, 255, 0.8), rgba(187, 131, 202, 0.8)) 30 30;
   border-image: linear-gradient(left, rgba(255, 255, 255, 0.8), rgba(187, 131, 202, 0.8)) 30 30;
   border-color: rgba(255, 255, 255, 0.8);
+}
+/*保存按钮*/
+.curr-saveInfo {
+  margin: 30px 0;
+  text-align: center;
+}
+.curr-saveInfo span {
+  text-align: center;
+  display: inline-block;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  background: #505050;
+  width: 165px;
+  height: 22px;
+  color: #ffffff;
+  letter-spacing: 20px;
+  font-size: 14px;
+  text-indent: 14px;
+  cursor: pointer;
+}
+/*信息列表*/
+.infoBox {
+  width: 320px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  /*上传图片*/
+  /*介绍*/
+}
+.infoBox .infoLi {
+  margin-bottom: 13%;
+  height: 22px;
+  line-height: 22px;
+}
+.infoBox .infoLi .infoIcon {
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative;
+  bottom: 2px;
+}
+.infoBox .infoLi .infoLable {
+  letter-spacing: 5px;
+  font-weight: 500;
+  font-size: 14px;
+  position: relative;
+}
+.infoBox .infoLi .infoInput {
+  width: 180px;
+  vertical-align: middle;
+  height: 20px;
+  position: relative;
+  bottom: 3px;
+  text-align: center;
+  border: solid 1px #d52d81;
+}
+.infoBox .addFileInfoLi {
+  height: auto !important;
+}
+.infoBox .addFileInfoLi .addFileInfoImgDiv {
+  margin: 10px 0 0 0px;
+}
+.infoBox .addFileInfoLi .addFileInfoImgDiv .infoImgBox {
+  width: 100px;
+  height: 120px;
+  background: #ffaed8;
+}
+.infoBox .addFileInfoLi .addFileInfoImgDiv .infoImgBox:nth-of-type(2) {
+  margin: 0 10px;
+}
+.infoBox .addFileInfoLi .addFileInfoImgDiv .infoImgBox img {
+  width: 100%;
+}
+.infoBox .addFileInfoLi .addFileInfoImgDiv .addFileInfoImgBox {
+  width: 100px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.5);
+  position: relative;
+  text-align: center;
+}
+.infoBox .addFileInfoLi .addFileInfoImgDiv .addFileInfoImgBox .chooseInfoImg {
+  width: 100px;
+  height: 120px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.infoBox .addFileInfoLi .addFileInfoImgDiv .addFileInfoImgBox .addFileInfoImg {
+  font-size: 100px;
+  line-height: 100px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.infoBox .infoTextareaLi {
+  height: auto;
+}
+.infoBox .infoTextareaLi label {
+  vertical-align: top;
+}
+.infoBox .infoTextareaLi .infoTextarea {
+  height: 100px;
+  margin-top: 8px;
+  width: 210px;
+  text-align: left;
+  padding: 10px;
+}
+/*单选按钮*/
+.radioBox label {
+  letter-spacing: 0;
+}
+.radioBox .curr-radio {
+  width: 14px;
+  height: 14px;
+  box-sizing: border-box;
+}
+.radioBox input[type="radio"] + label::before {
+  content: "\a0";
+  /*不换行空格*/
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+  border-radius: 50%;
+  border: 1px solid #d52d81;
+  text-indent: 0.15px;
+  line-height: 1;
+  box-sizing: border-box;
+}
+.radioBox input[type="radio"]:checked + label::before {
+  background-color: #d52d81;
+  background-clip: content-box;
+  padding: 2px;
+  box-sizing: border-box;
+}
+.radioBox input[type="radio"] {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+/*信息表单右边部分*/
+.rightInfo {
+  padding-left: 20px;
+  border-left: solid 1px #d52d81;
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  /* Firefox */
+  -webkit-box-sizing: content-box;
+  /* Safari */
+}
+/*信息表单左边边部分*/
+.leftInfo {
+  border-right: solid 1px #d52d81;
+  position: relative;
+  left: 1px;
 }
 /*# sourceMappingURL=common.css.map */

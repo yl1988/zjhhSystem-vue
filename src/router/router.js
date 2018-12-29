@@ -105,7 +105,7 @@ export default new Router({
                   meta:{
                       navShow:true
                   }
-              },
+              },/*
               {
                   path:'/shops/AddClassify',
                   name:'addclassify',
@@ -113,7 +113,7 @@ export default new Router({
                   meta:{
                       navShow:true
                   }
-              },
+              },*/
               {
                   path:'/shops/newshops',
                   name:'newshops',

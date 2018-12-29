@@ -14,17 +14,20 @@
         },
         methods:{
             getFirst(){
+                let currListInfo,
+                    listArr
                 switch (this.$route.path) {
                     case '/curriculum/newcurriculum':
                         break
                     case '/curriculum/curriculumlist':
-                        this.$store.dispatch('getCurrLists')
-                        console.log(this.currLists)
-                        /*1s后将取到的数据缓存到本地*/
-                        let currListInfo = this.currLists[0].contents[0].currListInfo
-                        let item = 'currListInfo'
-                        this.$zj_globalMethods.setLocalStorage(item,currListInfo)
-                        console.log(currListInfo)
+                        /*将取到的数据缓存到本地*/
+                        //console.log(this.currLists)
+                        currListInfo = this.currLists[0].contents[0].currListInfo
+                        listArr = this.currLists
+                        this.$zj_globalMethods.setLocalStorage('currListInfo',currListInfo)
+                        this.$zj_globalMethods.setLocalStorage('listArr',listArr)
+                        //console.log(currListInfo)
+                        //console.log(listArr)
                         break
                     case '/curriculum/appointment':
                         break
@@ -37,6 +40,9 @@
         },
         mounted(){
            // console.log(this.$route.path)
+            this.$nextTick(()=>{
+                this.getFirst()
+            })
         }
     }
 </script>

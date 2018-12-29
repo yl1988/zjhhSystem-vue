@@ -1,6 +1,7 @@
 
 import Mock from 'mockjs'
 import data from './data.json'
+/*返回课程列表信息*/
 Mock.mock('/curriculum/curriculumlist',{
     code:0,
     //data:data.currLists
@@ -264,8 +265,54 @@ Mock.mock('/curriculum/curriculumlist',{
         ],//课程列表
     }
 })
-
+/*返回预约课程信息*/
 Mock.mock('/curriculum/appointment',{
     code:0,
     data:data.appoinLists
+})
+/*返回商品分类信息*/
+Mock.mock('/shops/shopsclassify',{
+    code:0,
+    shopClassifys:[
+        {
+            name:Mock.Random.cname(),
+            id:'0'
+        },
+        {
+            name:Mock.Random.cname(),
+            id:'1'
+        },
+        {
+            name:Mock.Random.cname(),
+            id:'2'
+        },
+        {
+            name:Mock.Random.cname(),
+            id:'3'
+        },
+        {
+            name:Mock.Random.cname(),
+            id:'4'
+        },
+    ]
+})
+/*接收前台发送来的课程信息*/
+Mock.mock('/savecurrinfo',function (options) {
+    console.log(options)
+})
+/*结收前台发送过来的课程封面图片*/
+Mock.mock('/submitcurrimgs',function (options) {
+    console.log(options)
+})
+/*接收前台发送的商品品类信息*/
+Mock.mock(/^\/addShopClassify/,function (options) {
+    console.log(options)
+})
+/*接收前台发过来的新增商品信息*/
+Mock.mock(/^\/addShopInfo/,function (options) {
+    console.log(options)
+})
+/*接收前台发过来的商品图片*/
+Mock.mock(/shopImgs/,function (options) {
+    console.log(options)
 })

@@ -1,3 +1,4 @@
+
 export default {
     userInfo:{},
     currLists:[],
@@ -501,4 +502,5 @@ export default {
             isShow: false
         },
     ],//预约情况
+    shopClassifys:[]//商品分类
 }

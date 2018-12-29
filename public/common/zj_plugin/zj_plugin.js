@@ -56,12 +56,37 @@ export default {
                 if(!window.localStorage){//判断 浏览器支持性
                     alert('您的浏览器版本过低，推荐使用高版本浏览器！')
                 }else{
-                    let localStrInfo = JSON.parse(window.localStorage.getItem(item))
-                    console.log(localStrInfo)
-                    return localStrInfo
+                    return JSON.parse(window.localStorage.getItem(item))
                 }
+            },
+            previewImg:function(fileID,imgId,imgBoxId,showAddrId,that) {
+                if (!(window.File || window.FileReader || window.FileList || window.Blob)) {//判断是否支持file
+                    alert('该浏览器不支持,请换用高版本浏览器！')
+                }
+                if (!that.files.length) return;
+                var imgIdName = imgId.split('#')[1]
+                var $filePath=URL.createObjectURL(that.files[0]);
+                var coverImg = "<" + "img" + " id=" + imgIdName + ">"
+                var files = Array.prototype.slice.call(that.files)
+                files.forEach(function (file, i) {
+                    var jpgImgTest =/\/jpeg$/,
+                        jpegImgTest = /\/jpeg$/ ,
+                        pngImgTest = /\/png$/
+                    if (!(jpgImgTest.test(file.type) || jpegImgTest.test(file.type) || pngImgTest.test(file.type))){
+                        alert('请上传jpg,png,jpeg格式的图片')
+                        return
+                    }
+                    $(imgBoxId).append(coverImg)
+                    //console.log($('.coverImg').children())
+                    $(imgId).attr('src',$filePath)//预览图片
+                    $(imgBoxId).css('background','transparent')
+                    var uploadfile = $(fileID).val()
+                    $(showAddrId).val(uploadfile)//显示图片路
+                })
+
             }
-        }
+        },
+
 
 
 

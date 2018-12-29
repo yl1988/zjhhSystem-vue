@@ -31,6 +31,9 @@
             }
         },
         methods: {
+        },
+        mounted() {
+            this.$store.dispatch('getCurrLists')
         }
     }
 </script>

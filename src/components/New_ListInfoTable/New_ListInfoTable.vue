@@ -1,47 +1,46 @@
 <template>
     <div style="text-align:center;">
-        <ul class="curriculumInfoUL curriculumList curr_new-list">
+        <ul class="curriculumInfoUL curriculumList curr_new-list leftInfo">
             <li class="curriculumInfoLi">
                 <img src="./images/icon_nc_name.png" width="20" height="20" class="curr-nameImg">
                 <label class="curriculumInfoName">课程名称</label>
-                <input type="text" class="curr-curriculumName" id="curr-curriculumName-list" v-model="currName">
+                <input type="text" class="curr-curriculumName" id="curr-curriculumName-list" v-model="currFormData.name">
             </li>
             <li class="curriculumInfoLi curr-teachLi">
                 <img src="./images/icon_nc_type.png" width="20" height="20" class="curr-nameImg">
                 <label class="curr-teachText curriculumInfoName">授课类型</label>
                 <div class="isTeachBox radioBox">
-                    <input type="radio" name="isTeachList" id="teach-list" class="curr-isTeach" :checked="isListInfo_teach">
+                    <input type="radio" name="isTeachList" id="teach-list" class="curr-isTeach" value="1" v-model="currFormData.teachType">
                     <label class="curriculumInfoName" for="teach-list">老师授课</label>
-                    <input type="radio" name="isTeachList" id="noteach-list" class="curr-isTeach" :checked="isListInfo_noTeach">
+                    <input type="radio" name="isTeachList" id="noteach-list" class="curr-isTeach" value="0" v-model="currFormData.teachType">
                     <label class="curriculumInfoName" for="noteach-list">自习课</label>
                 </div>
             </li>
             <li class="curriculumInfoLi curr-dateLi">
                 <img src="./images/icon_nc_date.png" width="20" height="20" class="curr-nameImg-list">
                 <label class="curriculumInfoName">开课日期</label>
-                <input type="date" class="curr-curriculumDate" id="curr-curriculumDate-list" v-model="showDate">
+                <input type="date" class="curr-curriculumDate" id="curr-curriculumDate-list" v-model="currFormData.date">
             </li>
             <li class="curriculumInfoLi curr-timeLi">
                 <img src="./images/icon_nc_time.png" width="20" height="20" class="curr-nameImg">
                 <label class="curriculumInfoName">开课时间</label>
-                <input type="time" class="curr-curriculumTime curr-firstTime" id="curr-firstTime-list" v-model="showFirstTime">
+                <input type="time" class="curr-curriculumTime curr-firstTime" id="curr-firstTime-list" v-model="currFormData.firstTime">
                 <span class="time-line"></span>
-                <input type="time" class="curr-curriculumTime curr-lastTime" id="curr-lastTime-list" v-model="showLastTime">
+                <input type="time" class="curr-curriculumTime curr-lastTime" id="curr-lastTime-list" v-model="currFormData.lastTime">
             </li>
-            <li class="curriculumInfoLi curr-coverLi clear" v-show="isTeach">
+            <li class="curriculumInfoLi curr-coverLi clear" v-show="parseInt(currFormData.teachType) !== 0">
                 <div class="coverTitleBox left">
                     <img src="./images/icon_nc_cover.png" width="20" height="20" class="curr-nameImg">
                     <label class="curriculumInfoName">课程封面</label>
                 </div>
                 <div class="fileBox left" id="fileBox-list">
-                    <input type="text" class="showFileText" id="showFileTextList" v-model="showFileAdress">
-                    <span class="chooseImgBtn" id="chooseImgBtn-list" style="">选择图片</span>
-                    <input type="file" name="fileImgNew" class="fileImg" accept=".jpg,.jpeg,.png" @change="addImg" ref="inputer">
+                    <input type="text" class="showFileText" id="showFileTextList" v-model="previewImgSrc">
+                    <span class="chooseImgBtn" id="chooseImgBtn-list">选择图片</span>
+                    <input type="file" name="fileImgNew" class="fileImg" accept=".jpg,.jpeg,.png" @change="addImg" ref="inputer" >
                 </div>
                 <div class="coverBox clear">
-                    <div class="coverImgBox left" id="coverImgBox-list" :class="{coverImgBoxBk:!hasImg}">
-                        <img v-if="currListInfo && currListInfo.currCover.imgSrc" :src="currListInfo.currCover && currListInfo.currCover.imgSrc">
-                        <img :src="getObjectURL(value)" v-if="showFileImg">
+                    <div class="coverImgBox left" id="coverImgBox-list" :class="{coverImgBoxBk:!(currFormData.currCover && currFormData.currCover.imgSrc)}">
+                        <img v-if="currFormData.currCover && currFormData.currCover.imgSrc" :src="currFormData.currCover && currFormData.currCover.imgSrc" style="vertical-align:middle;">
                     </div>
                     <span class="coverText left">请上传小于1M，宽度大于高度的图片，支持格式为jpg,jpeg,png</span>
                 </div>
@@ -49,72 +48,72 @@
             <li class="curriculumInfoLi curr-explainLi clear">
                 <img src="./images/icon_nc_explain.png" width="20" height="20" class="curr-nameImg left">
                 <label class="curriculumInfoName left">课程说明</label>
-                <textarea class="curr-explain left" id="curr-explainList" v-model="showExpain"></textarea>
+                <textarea class="curr-explain left" v-model="currFormData.explain"></textarea>
             </li>
         </ul>
-        <ul class="curriculumInfoUL newCurriculum curr_new-list">
+        <ul class="curriculumInfoUL newCurriculum curr_new-list rightInfo">
             <li class="curriculumInfoLi">
                 <img src="./images/icon_nc_pepleNumber.png" width="20" height="20" class="curr-nameImg">
                 <label class="curriculumInfoName" >容纳人数</label>
-                <input type="number" id="curr-personNumberList" v-model="showTotalPerson">
+                <input type="number" id="curr-personNumberList" v-model="currFormData.totalPersons">
             </li>
             <li class="curriculumInfoLi curr-addr">
                 <img src="./images/icon_nc_addr.png" width="20" height="20" class="curr-nameImg">
                 <label class="curriculumInfoName" >上课地点</label>
                 <div class="curr-addrInputBox">
-                    <input type="text" id="curr-addr-list">
-                    <strong class="curr-sureAddr">+</strong>
+                    <input type="text" v-model="inputLocation">
+                    <strong class="curr-sureAddr" @click="addLoacation">+</strong>
                 </div>
                 <div class="curr-addrText_delBox clear">
-                    <div class="curr-addTextBox clear" v-for="(currLocation,index) in currLocationArr" :key="index">
+                    <div class="curr-addTextBox clear" v-for="(currLocation,index) in currFormData.currLocations" :key="index">
                         <p class="curr-addText left" >{{currLocation}}</p>
-                        <strong class="delAddr right">-</strong>
+                        <strong class="delAddr right" @click="delLoation" :data-index="index">-</strong>
                     </div>
                 </div>
 
             </li>
-            <li class="curriculumInfoLi curr-typeLi" v-show="isTeach">
+            <li class="curriculumInfoLi curr-typeLi" v-show="parseInt(currFormData.teachType) !== 0">
                 <img src="./images/icon_nc_type.png" width="20" height="20" class="curr-nameImg">
                 <label class="curriculumInfoName" >课程类别</label>
                 <div class="curr-typeBox radioBox">
                     <div>
-                        <input type="radio" name="type1List" id="type1-list" class="curr-radio" :checked="courseType4">
+                        <input type="radio" name="type1List" id="type1-list" class="curr-radio" value="0" v-model="currFormData.courseType">
                         <label class="curriculumInfoName" for="type1-list"><img src="./images/icon_cu-sbs.png"></label>
-                        <input type="radio" name="type1List" id="type2-list" class="curr-radio" :checked="courseType3">
+                        <input type="radio" name="type1List" id="type2-list" class="curr-radio" value="1" v-model="currFormData.courseType">
                         <label class="curriculumInfoName" for="type2-list"><img src="./images/icon_cu-ws.png"></label>
-                        <input type="radio" name="type1List" id="type3-list" class="curr-radio" :checked="courseType2">
+                        <input type="radio" name="type1List" id="type3-list" class="curr-radio" value="2" v-model="currFormData.courseType">
                         <label class="curriculumInfoName" for="type3-list"><img src="./images/icon_cu-sc.png"></label>
                     </div>
                     <div>
-                        <input type="radio" name="type1List" id="type4-list" class="curr-radio" :checked="courseType1">
+                        <input type="radio" name="type1List" id="type4-list" class="curr-radio" value="3" v-model="currFormData.courseType">
                         <label class="curriculumInfoName" for="type4-list"><img src="./images/icon_cu-heart.png"></label>
-                        <input type="radio" name="type1List" id="type5-list" class="curr-radio" :checked="courseType0">
+                        <input type="radio" name="type1List" id="type5-list" class="curr-radio" value="4" v-model="currFormData.courseType">
                         <label class="curriculumInfoName" for="type5-list"><img src="./images/icon_cu-star.png"></label>
                     </div>
 
                 </div>
             </li>
-            <li class="curriculumInfoLi curr-lvStarLi" v-show="isTeach">
+            <li class="curriculumInfoLi curr-lvStarLi" v-show="parseInt(currFormData.teachType) !== 0">
                 <img src="./images/icon_nc_lv.png" width="20" height="20" class="curr-nameImg">
-                <label class="curriculumInfoName" >课程难度</label>
-                <div class="curr_lvStar">
-                    <img :src="hardImg0">
-                    <img :src="hardImg1">
-                    <img :src="hardImg2">
-                    <img :src="hardImg3">
-                    <img :src="hardImg4">
+                <label class="curriculumInfoName">课程难度</label>
+                <div class="curr_lvStar" @click="hardChoose">
+                    <img :src="isList ? currHardImg0 : newCurrHardImgArr[0]"  data-index="0">
+                    <img :src="isList ? currHardImg1 : newCurrHardImgArr[1]"  data-index="1">
+                    <img :src="isList ? currHardImg2 : newCurrHardImgArr[2]"  data-index="2">
+                    <img :src="isList ? currHardImg3 : newCurrHardImgArr[3]"  data-index="3">
+                    <img :src="isList ? currHardImg4 : newCurrHardImgArr[4]"  data-index="4">
                 </div>
             </li>
             <li class="curriculumInfoLi">
                 <img src="./images/icon_nc_price.png" width="20" height="20" class="curr-nameImg">
                 <label class="curriculumInfoName" >课程单价</label>
-                <input type="number" id="curr-price" v-model="currPrice">
+                <input type="number" id="curr-price" v-model="currFormData.price">
             </li>
             <li class="curriculumInfoLi curr_discountLi">
                 <img src="./images/icon_nc_discount.png" width="20" height="20" class="curr-nameImg">
                 <label class="curriculumInfoName" >多人折扣</label>
                 <div class="discountBox">
-                    <input type="number" id="curr-dicount" v-model="currListInfo.discount">
+                    <input type="number" id="curr-dicount" v-model="currFormData.discount">
                     <strong>%</strong>
                 </div>
 
@@ -127,192 +126,222 @@
     import {mapState} from 'vuex'
     export default {
         props:{
-              currListInfo: Object
+              currListInfo: Object,
+              isList:Boolean
         },
         data(){
             return{
                 dashImg:require('./images/icon_lvStar-dash.png'),
                 solidImg:require('./images/icon_lvStar-solid.png'),
-                formData:new FormData(),
-                imgs: {},
-                imgLen:0,
+                imgs: {},//上传的图片对象
+                currFormData:{
+                    name:'',
+                    teachType:0,//授课还是自习课
+                    date:0,
+                    firstTime:0,
+                    lastTime:0,
+                    currCover:{
+                        imgSrc:'',
+                        id:''
+                    },//图片预览
+                    explain:'',
+                    totalPersons:'',
+                    currLocations:[],
+                    courseType:0,
+                    currHard:0,
+                    price:'',
+                    discount:''
+                },
+                previewImgSrc:'',//预览图片地址
+                inputLocation:'',//输入的地址
+                newCurrHardImgArr:[//新建课程难度选择
+                    require('./images/icon_lvStar-dash.png'),
+                    require('./images/icon_lvStar-dash.png'),
+                    require('./images/icon_lvStar-dash.png'),
+                    require('./images/icon_lvStar-dash.png'),
+                    require('./images/icon_lvStar-dash.png')
+                ],
             }
         },
         computed:{
             ...mapState(['currLists','appoinLists']),
-            currName(){
-                return this.currListInfo ? this.currListInfo.name : ''
-            },
-            hasImg(){//判断是否有封面图片
-                return (this.currListInfo && this.currListInfo.currCover) ? this.currListInfo.currCover.imgSrc : ''
-            },
-            hardImg0(){//第一颗难度星星
-                //let courseType = this.currListInfo.courseType
-               // console.log(courseType)
-                return this.currListInfo ? this.solidImg : this.dashImg
-            },
-            hardImg1(){//第二颗难度星星
-                if(this.currListInfo){
-                    let currHard = this.currListInfo.currHard
-                    return (currHard === 0) ? this.dashImg : this.solidImg
-                }else{
-                    return this.dashImg
-                }
-            },
-            hardImg2(){//第三颗难度星星
-                if(this.currListInfo){
-                    let currHard = this.currListInfo.currHard
-                    //console.log(courseType)
-                    return ((currHard === 0) || (currHard === 1)) ? this.dashImg : this.solidImg
-                }else{
-                    return this.dashImg
-                }
+            currHardImg0(){//ccccc第一颗星星
+                return (this.isList && this.currFormData) ? this.solidImg : this.dashImg
 
             },
-            hardImg3(){//第四颗难度星星
-                if(this.currListInfo){
-                    let currHard = this.currListInfo.currHard
-                    //console.log(courseType)
-                    return ((currHard === 3) || (currHard === 4)) ? this.solidImg : this.dashImg
-                }else{
-                    return this.dashImg
-                }
-
-            },
-            hardImg4(){//第五颗难度星星
-                if(this.currListInfo){
-                    let currHard = this.currListInfo.currHard
-                    //console.log(courseType)
-                    return (currHard === 4) ? this.solidImg : this.dashImg
-                }else{
-                    return this.dashImg
-                }
-
-            },
-            isTeach(){//授课还是自习
-                if(this.currListInfo){
-                    return  this.currListInfo.teachType === 0
+            currHardImg1(){//第二颗星星
+                if(this.isList){
+                    if(this.currFormData){
+                        let currHard = this.currFormData.currHard
+                        return (currHard === 0) ? this.dashImg : this.solidImg
+                    }
                 }else {
-                    return false
+                    return this.dashImg
                 }
-
             },
-            isListInfo_teach (){//课程列表页面下显示授课
-                return this.currListInfo ? (this.currListInfo.teachType === 0) : false
+            currHardImg2(){//第三颗星星
+                if(this.isList){
+                    if(this.currFormData){
+                        let currHard = this.currFormData.currHard
+                        return ((currHard === 0) || (currHard === 1)) ? this.dashImg : this.solidImg
+                    }
+                } else{
+                    return this.dashImg
+                }
             },
-            isListInfo_noTeach(){//课程列表页面下显示自习
-                return this.currListInfo ? (this.currListInfo.teachType === 1) : false
-            },
-            showDate(){//显示日期
-                return this.currListInfo ? this.currListInfo.date : ''
-            },
-            showFirstTime() {//显示开始时间
-                return this.currListInfo ? this.currListInfo.firstTime : ''
-            },
-            showLastTime(){//显示结束时间
-                return this.currListInfo ? this.currListInfo.lastTime : ''
-            },
-            showFileImg(){//预览图显示
-
-            },
-            showFileAdress(){//显示地址
-
-            },
-            showExpain(){//显示说明
-                if(this.currListInfo){
-                    return this.currListInfo.explain
+            currHardImg3(){//第四颗星星
+                if(this.isList){
+                    if(this.currFormData){
+                        let currHard = this.currFormData.currHard
+                        return ((currHard === 3) || (currHard === 4)) ? this.solidImg : this.dashImg
+                    }
                 }else{
-                    return false
+                    return this.dashImg
                 }
             },
-            showTotalPerson(){//容纳人数
-                if(this.currListInfo){
-                    return this.currListInfo.totalPersons
-                }else {
-                    return false
-                }
-
+            currHardImg4(){//第五颗星星
+                return (this.isList && (this.currFormData.currHard === 4)) ? this.solidImg : this.dashImg
             },
-            currLocationArr(){//上课地址
-                return this.currListInfo ? this.currListInfo.currLocations : []
-            },
-            courseType4(){//课程类别4
-                return this.currListInfo ? (this.currListInfo.courseType === 4) : false
-            },
-            courseType3(){//课程类别3
-                return this.currListInfo ? (this.currListInfo.courseType === 3) : false
-            },
-            courseType2(){//课程类别2
-                return this.currListInfo ? (this.currListInfo.courseType === 2) : false
-            },
-            courseType1(){//课程类别1
-                return this.currListInfo ? (this.currListInfo.courseType === 1) : false
-            },
-            courseType0(){//课程类别0
-                return this.currListInfo ? (this.currListInfo.courseType === 0) : false
-            },
-            currPrice(){//课程单价
-                if(this.currListInfo){
-                    return this.currListInfo.price
-                }else {
-                    return false
-                }
-            }
-
-
         },
         methods:{
+            /*添加地址*/
+            addLoacation(){
+                //let location = this.currFormData.
+                console.log('click')
+                let {inputLocation,currFormData} = this
+                if(inputLocation.trim()){
+                    if(this.isList){
+                        currFormData.currLocations.push(inputLocation)
+                    }else {
+                        !currFormData.currLocations && (currFormData.currLocations = [])
+                        currFormData.currLocations.push(inputLocation)
+                    }
+                    this.inputLocation = ''
+                }
+
+            },
+            /*删除地址*/
+            delLoation(e){
+                e = e || window.event
+                let target = e.target || e.srcElement
+                console.log(target)
+                let index = target.dataset ? target.dataset.index : target.getAttribute('data-index')
+                let {currFormData} = this
+                window.confirm('确认删除？') && currFormData.currLocations.splice(index,1)
+            },
+            /*选择课程难度*/
+            hardChoose(e){
+                //console.log(e)
+                e = e || window.event
+                let target = e.target || e.srcElement
+                //console.log(target)
+                let index = target.dataset ? target.dataset.index.toString() : target.getAttribute('data-index').toString()
+                let currHardObj = {
+                    0:0,
+                    1:1,
+                    2:2,
+                    3:3,
+                    4:4
+                }
+                this.currFormData.currHard = currHardObj[index]
+                if(!this.isList){
+                    switch (parseInt(index)) {
+                        case 4:
+                            for(let i=0;i<this.newCurrHardImgArr.length;i++){
+                                this.newCurrHardImgArr.splice(i,1,this.solidImg)
+                            }
+                            console.log(this.newCurrHardImgArr)
+                            break
+                        case 3:
+                            for(let i=0;i<this.newCurrHardImgArr.length;i++){
+                                i<4 && this.newCurrHardImgArr.splice(i,1,this.solidImg)
+                                ;(i === 4) && this.newCurrHardImgArr.splice(i,1,this.dashImg)
+                            }
+                            break
+                        case 2:
+                            for(let i=0;i<this.newCurrHardImgArr.length;i++){
+                                i<3 && this.newCurrHardImgArr.splice(i,1,this.solidImg)
+                                ;(i >= 3) && this.newCurrHardImgArr.splice(i,1,this.dashImg)
+                            }
+                            break
+                        case 1:
+                            for(let i=0;i<this.newCurrHardImgArr.length;i++){
+                                i<2 && this.newCurrHardImgArr.splice(i,1,this.solidImg)
+                                ;(i >= 2) && this.newCurrHardImgArr.splice(i,1,this.dashImg)
+                            }
+                            break
+                        case 0:
+                            for(let i=0;i<this.newCurrHardImgArr.length;i++){
+                                (i === 0) && this.newCurrHardImgArr.splice(i,1,this.solidImg)
+                                ;(i > 0) && this.newCurrHardImgArr.splice(i,1,this.dashImg)
+                            }
+                            break
+                        default:
+                            this.newCurrHardImg0 = this.dashImg
+                            break
+                    }
+                    console.log(this.currFormData)
+                }
+
+            },
             /*添加预览图*/
             addImg(){
                 let inputDOM = this.$refs.inputer;
                 // 通过DOM取文件数据
                 this.fil = inputDOM.files
-                let oldLen=this.imgLen
-                let len=this.fil.length+oldLen
-                if(len>4){
-                    alert('最多可上传4张，您还可以上传'+(4-oldLen)+'张')
-                    return false;
-                }
-                for (let i=0; i < this.fil.length; i++) {
-                    let size = Math.floor(this.fil[i].size / 1024)
-                    if (size > 5*1024*1024) {
-                        alert('请选择5M以内的图片！')
+                let fileInfo = this.fil[0]
+                console.log(this.fil)
+                let size = Math.floor(fileInfo.size / 1024)
+                let jpgImgTest =/\/jpeg$/,
+                    jpegImgTest = /\/jpeg$/ ,
+                    pngImgTest = /\/png$/
+                if (!(jpgImgTest.test(fileInfo.type) || jpegImgTest.test(fileInfo.type) || pngImgTest.test(fileInfo.type))){//判断格式
+                    alert('请上传jpg,png,jpeg格式的图片')
+                    return
+                }else {
+                    if (size > 1024) {//判断尺寸
+                        alert('请选择1M以内的图片！')
                         return false
                     }
-                    this.imgLen++
-                    this.$set(this.imgs,this.fil[i].name+'?'+new Date().getTime()+i,this.fil[i])
                 }
-            },
-            /*获取图片地址*/
-            getObjectURL(file) {
-                let url = null ;
-                if (window.createObjectURL!=undefined) { // basic
-                    url = window.createObjectURL(file)
-                } else if (window.URL!=undefined) { // mozilla(firefox)
-                    url = window.URL.createObjectURL(file)
-                } else if (window.webkitURL!=undefined) { // webkit or chrome
-                    url = window.webkitURL.createObjectURL(file)
+                this.$set(this.imgs,fileInfo.name+'?'+new Date().getTime(),fileInfo)
+                let $filePath=URL.createObjectURL(this.fil[0])
+                if(this.isList){
+                    this.currFormData.currCover.imgSrc = $filePath
+                }else {
+                    !this.currFormData.currCover && (this.currFormData.currCover = {})
+                    this.currFormData.currCover.imgSrc = $filePath
                 }
-                return url ;
+                this.previewImgSrc= fileInfo.name//设置预览地址文字
+                this.$emit('getImgs',this.imgs)
             },
-            /*提交图片*/
-            submit(){
-                for(let key in this.imgs){
-                    let name=key.split('?')[0]
-                    this.formData.append('multipartFiles',this.imgs[key],name)
-                }
-                this.$http.post('/opinion/feedback', this.formData,{
-                    headers: {'Content-Type': 'multipart/form-data'}
-                }).then(res => {
-                    this.alertShow=true
-                })
-            },
+
         },
         mounted(){
+            this.isList ? (this.currFormData = this.currListInfo) : (this.currFormData = {})
+            console.log(this.currFormData)
+            this.$nextTick(()=>{
+            })
+
         },
         watch:{
-
+            currFormData:{//修改时监视本地数据变化
+                deep: true,
+                handler:function (value) {
+                    //console.log(value)
+                    this.currFormData = value
+                    this.$emit('getFormInfo',value)
+                    //console.log(this.currFormData)
+                }
+            },
+            currListInfo(value){//后台数据发生改变是更新本地数据
+                this.isList && (this.currFormData = value)
+            },
+            inputLocation(value){//监视输入地址
+                this.inputLocation = value
+            }
         }
+
     }
 </script>
 
@@ -320,18 +349,11 @@
     @import "../../../public/common/until/less/extend";
     /*新建课程与课程列表*/
     .curriculumInfoUL{
-        width:300px;
-        margin-right:20px;
+        width:320px;
+        //margin-right:20px;
         display:inline-block;
         vertical-align:top;
         text-align:left;
-        &:first-of-type{
-            padding-right:20px;
-            border-right:solid 1px #d52d81;
-            box-sizing:content-box;
-            -moz-box-sizing:content-box; /* Firefox */
-            -webkit-box-sizing:content-box; /* Safari */
-        }
         .curriculumInfoLi{
             margin-bottom:12%;
             height:22px;
@@ -385,40 +407,6 @@
                 padding:0 5px;
                 text-align:center;
             }
-            .radioBox{
-                label{
-                    letter-spacing:0;
-                }
-                .curr-radio{
-                    width:14px;
-                    height:14px;
-                    box-sizing:border-box;
-                }
-                input[type="radio"] + label::before {
-                    content: "\a0"; /*不换行空格*/
-                    display: inline-block;
-                    vertical-align: middle;
-                    font-size: 14px;
-                    width: 14px;
-                    height: 14px;
-                    margin-right: 5px;
-                    border-radius: 50%;
-                    border: 1px solid #d52d81;
-                    text-indent: .15px;
-                    line-height: 1;
-                    box-sizing:border-box;
-                }
-                input[type="radio"]:checked + label::before {
-                    background-color: #d52d81;
-                    background-clip: content-box;
-                    padding: 2px;
-                    box-sizing:border-box;
-                }
-                input[type="radio"] {
-                    position: absolute;
-                    clip: rect(0, 0, 0, 0);
-                }
-            }
         }
         .curr-dateLi{
             label{
@@ -434,7 +422,8 @@
             height:110px;
             .coverBox{
                 padding-top:10px;
-                padding-left:20%;
+                padding-left:10%;
+                text-align:left;
                 .coverImgBox{
                     width:90px;
                     height:60px;

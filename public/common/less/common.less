@@ -37,7 +37,7 @@ a{
   color:#c0c0c0;
 }
 
-input,button,textarea{
+input,button,select,textarea{
   outline:none;
   border:none;
   background-color:transparent;
@@ -105,5 +105,165 @@ body{
 
 
   }
+}
+/*保存按钮*/
+.curr-saveInfo{
+  margin:30px 0;
+  text-align:center;
+  span{
+    text-align:center;
+    display:inline-block;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background:#505050;
+    width:165px;
+    height:22px;
+    color:#ffffff;
+    letter-spacing:20px;
+    font-size:14px;
+    text-indent:14px;
+    cursor:pointer;
+  }
+}
+/*信息列表*/
+.infoBox{
+  width:320px;
+  display:inline-block;
+  vertical-align:top;
+  text-align:left;
+  .infoLi{
+    margin-bottom:13%;
+    height:22px;
+    line-height:22px;
+    .infoIcon{
+      margin-right:5px;
+      vertical-align:middle;
+      position:relative;
+      bottom:2px;
+    }
+    .infoLable{
+      letter-spacing: 5px;
+      font-weight: 500;
+      font-size: 14px;
+      position: relative;
+    }
+    .infoInput{
+      width:180px;
+      vertical-align:middle;
+      height:20px;
+      position:relative;
+      bottom:3px;
+      text-align:center;
+      border:solid 1px #d52d81;
+    }
+  }
+
+  /*上传图片*/
+  .addFileInfoLi{
+    height:auto !important;
+    .addFileInfoImgDiv{
+      margin:10px 0 0 0px;
+      .infoImgBox{
+        width:100px;
+        height:120px;
+        background:#ffaed8;
+        &:nth-of-type(2){
+          margin:0 10px;
+        }
+        img{
+          width:100%;
+        }
+      }
+      .addFileInfoImgBox{
+        width:100px;
+        height:120px;
+        background:rgba(255,255,255,0.5);
+        position:relative;
+        text-align:center;
+        .chooseInfoImg{
+          width:100px;
+          height:120px;
+          position: absolute;
+          left:0;
+          top:0;
+          opacity:0;
+          cursor:pointer;
+        }
+        .addFileInfoImg{
+          font-size:100px;
+          line-height:100px;
+          color:rgba(0,0,0,0.5);
+        }
+      }
+    }
+
+  }
+  /*介绍*/
+  .infoTextareaLi{
+    height:auto;
+    label{
+      vertical-align:top;
+    }
+    .infoTextareaIcon{
+
+    }
+    .infoTextarea{
+      height:100px;
+      margin-top:8px;
+      width:210px;
+      text-align:left;
+      padding:10px;
+    }
+  }
+}
+/*单选按钮*/
+.radioBox{
+  label{
+    letter-spacing:0;
+  }
+  .curr-radio{
+    width:14px;
+    height:14px;
+    box-sizing:border-box;
+  }
+  input[type="radio"] + label::before {
+    content: "\a0"; /*不换行空格*/
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    border-radius: 50%;
+    border: 1px solid #d52d81;
+    text-indent: .15px;
+    line-height: 1;
+    box-sizing:border-box;
+  }
+  input[type="radio"]:checked + label::before {
+    background-color: #d52d81;
+    background-clip: content-box;
+    padding: 2px;
+    box-sizing:border-box;
+  }
+  input[type="radio"] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+  }
+}
+/*信息表单右边部分*/
+.rightInfo{
+  padding-left:20px;
+  border-left:solid 1px #d52d81;
+  box-sizing:content-box;
+  -moz-box-sizing:content-box; /* Firefox */
+  -webkit-box-sizing:content-box; /* Safari */
+}
+/*信息表单左边边部分*/
+.leftInfo{
+  border-right:solid 1px #d52d81;
+  position:relative;
+  left:1px;
 }
 

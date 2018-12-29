@@ -1,7 +1,9 @@
 
 import {
     RECEIVE_CURRICULUMLIST,
-    RECEIVE_USER_INFO
+    RECEIVE_USER_INFO,
+    RECEIVE_SHOPCLASSIFY,
+    SUBMIT_CURRFORMSINFO
 
 } from './mutation-type'
 import {
@@ -13,8 +15,8 @@ import {
     reqForms,
     reqLogin,
     reqShops,
-    reqSystem
-
+    reqSystem,
+    reqShopClassify
 } from '../api'
 
 export default {
@@ -28,4 +30,12 @@ export default {
             commit(RECEIVE_CURRICULUMLIST, {currLists})
         }
     },
+    /*异步获取商品分类*/
+    async getShopClassify({commit}) {
+        const result = await reqShopClassify()
+        if (result.code === 0) {
+            const shopClassifys = result.shopClassifys
+            commit(RECEIVE_SHOPCLASSIFY, {shopClassifys})
+        }
+    }
 }
