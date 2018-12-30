@@ -99,7 +99,6 @@
     .paging{
         text-align:center;
         background:rgba(255,255,255,0.6);
-        margin-top:30px;
         width:90%;
         &:extend(.height50);
         span{

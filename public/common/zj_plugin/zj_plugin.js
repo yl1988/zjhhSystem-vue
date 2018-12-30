@@ -59,32 +59,51 @@ export default {
                     return JSON.parse(window.localStorage.getItem(item))
                 }
             },
-            previewImg:function(fileID,imgId,imgBoxId,showAddrId,that) {
+            /*上传图片并预览*/
+            previewImg:function(fileDom,imgsLength,imgObjs,imgSrcArr) {
                 if (!(window.File || window.FileReader || window.FileList || window.Blob)) {//判断是否支持file
                     alert('该浏览器不支持,请换用高版本浏览器！')
                 }
-                if (!that.files.length) return;
-                var imgIdName = imgId.split('#')[1]
-                var $filePath=URL.createObjectURL(that.files[0]);
-                var coverImg = "<" + "img" + " id=" + imgIdName + ">"
-                var files = Array.prototype.slice.call(that.files)
-                files.forEach(function (file, i) {
-                    var jpgImgTest =/\/jpeg$/,
-                        jpegImgTest = /\/jpeg$/ ,
-                        pngImgTest = /\/png$/
-                    if (!(jpgImgTest.test(file.type) || jpegImgTest.test(file.type) || pngImgTest.test(file.type))){
-                        alert('请上传jpg,png,jpeg格式的图片')
-                        return
+                //let inputDOM = this.$refs.fileRef
+                // 通过DOM取文件数据
+                this.fil = fileDom.files
+                let size = Math.floor(this.fil[0].size / 1024)//图片大小
+                /*判断格式*/
+                let jpgImgTest =/\/jpeg$/,
+                    jpegImgTest = /\/jpeg$/ ,
+                    pngImgTest = /\/png$/
+                if (!(jpgImgTest.test(this.fil[0].type) || jpegImgTest.test(this.fil[0].type) || pngImgTest.test(this.fil[0].type))){//判断格式
+                    alert('请上传jpg,png,jpeg格式的图片')
+                    return
+                }else {
+                    if (size > 1024) {//判断尺寸
+                        alert('请选择1M以内的图片！')
+                        return false
                     }
-                    $(imgBoxId).append(coverImg)
-                    //console.log($('.coverImg').children())
-                    $(imgId).attr('src',$filePath)//预览图片
-                    $(imgBoxId).css('background','transparent')
-                    var uploadfile = $(fileID).val()
-                    $(showAddrId).val(uploadfile)//显示图片路
-                })
+                }
+                if(imgObjs.length<imgsLength){
+                    //将上传的图片添加到图片数组对象中
+                    let imgObj = {}
+                    imgObj = this.fil
+                    imgObjs.push(imgObj)
+                    /*生成图片路径数组*/
+                    let imgSrc=URL.createObjectURL(this.fil[0])
+                    imgSrcArr.push(imgSrc)
+                }
+                console.log(imgSrcArr)//图片本地预览路径数组
+                console.log(imgObjs)//图片对象数组
+                fileDom.value = ''//清空File对象
 
-            }
+            },
+            /*点击删除图片*/
+            delPreviewImg:function(e,imgSrcArr,imgObjs,fileDom){
+                e = e || window.event
+                let target = e.target || e.srcElement
+                let index = target.dataset ? target.dataset.index : target.getAttribute('data-index')
+                imgSrcArr.splice(index,1)
+                imgObjs.splice(index,1)
+                fileDom.value = ''//清空File对象
+            },
         },
 
 

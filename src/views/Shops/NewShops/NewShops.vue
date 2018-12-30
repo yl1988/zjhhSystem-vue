@@ -4,7 +4,7 @@
         <div class="page-rightContent curriculumList curr_new-list" id="curriculumList">
             <div class="page-contentBk">
                 <div class="lineLearBorder">
-                    <div class="addShopsInfoBoxDiv">
+                    <div class="addInfoBoxDiv">
                         <ul class="addShopsInfoBox infoBox leftInfo">
                             <li class="addShopsInfoLi infoLi">
                                 <img src="" width="20" height="20" class="infoIcon">
@@ -42,10 +42,13 @@
                                 <img src="" width="20" height="20" class="infoIcon">
                                 <label class="infoLable" >商品图片</label>
                                 <div class="addShopImgDiv addFileInfoImgDiv clear">
-                                    <div class="shopImgBox infoImgBox left"></div>
-                                    <div class="shopImgBox infoImgBox left "></div>
-                                    <div class="addFileInfoImgBox left">
-                                        <input type="file" class="chooseInfoImg" name="shopImgs[]" multiple="multiple" accept=".jpg,.jpeg,.png" @change="selectShopImg" ref="shopImg">
+                                    <div class="shopImgBox infoImgBox left" v-for="(imgSrc,index) in imgSrcArr" :key="index"
+                                         :data-index='index'>
+                                        <img :src="imgSrc">
+                                        <strong class="delPrewImg" @click="delPreviewImg" :data-index="index">-</strong>
+                                    </div>
+                                    <div class="addFileInfoImgBox left" v-show="imgSrcArr.length<3">
+                                        <input type="file" class="chooseInfoImg" name="shopImgs" multiple="multiple" accept=".jpg,.jpeg,.png" @change="selectShopImg" ref="shopImg">
                                         <strong class="addFileInfoImg">+</strong>
                                     </div>
                                 </div>
@@ -58,16 +61,16 @@
                         </ul>
                     </div>
                 </div>
-                <div class="curr-saveInfo">
-                    <span class="curr-save" @click="saveShopInfo">保存</span>
-                </div>
+            </div>
+            <div class="curr-saveInfo">
+                <span class="curr-save" @click="saveShopInfo">添加</span>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import {subAddShopInfo} from '../../../api'
+    import {subAddShopInfo,subShopInfoImgs} from '../../../api'
     import {mapState} from 'vuex'
     export default {
         data(){
@@ -77,52 +80,58 @@
                     brand:'',
                     classify:'',
                     price:'',
-                    isShelf:'',
-                    introdue:''
-                }
+                    isShelf:0,
+                    introduce:''
+                },
+                imgObjs:[],//上传的图片
+                imgSrcArr:[],//图片本地路径数组
             }
         },
        methods:{
             /*保存商品信息*/
            saveShopInfo(){
-               let {shopInfoData} = this
+               let {shopInfoData,imgObjs} = this
+               if(!shopInfoData.name.trim()){
+                   console.log()
+                   alert('商品名称不能为空！')
+                   return
+               }
+               if(!shopInfoData.brand.trim()){
+                   alert('品牌不能为空')
+                   return
+               }
+               if(!shopInfoData.classify.trim()){
+                   alert('分类必须选择')
+                   return
+               }
+               if(!shopInfoData.price.trim()){
+                   alert('价格不能为空')
+                   return
+               }
                let shopInfoDataStr = JSON.stringify(shopInfoData)
                subAddShopInfo(shopInfoDataStr)
-               this.selectShopImg()
+               subShopInfoImgs(imgObjs)
+               /*清空界面数据*/
+               this.shopInfoData.name = ''
+               this.shopInfoData.brand = ''
+               this.shopInfoData.classify = ''
+               this.shopInfoData.price = ''
+               this.shopInfoData.isShelf = 0
+               this.shopInfoData.introduce = ''
+               this.imgSrcArr = []
+               this.imgObjs = []
+               //console.log(this.shopInfoData)
            },
            /*添加商品图*/
            selectShopImg(){
-               let inputDOM = this.$refs.shopImg;
-               // 通过DOM取文件数据
-               this.fil = inputDOM.files
-               console.log(this.fil)
-               let fileInfo = this.fil[0]
-               for(let i=0;i<this.fil.length;i++){
-                   console.log(this.fil[i])
-               }
-               let size = Math.floor(fileInfo.size / 1024)
-               let jpgImgTest =/\/jpeg$/,
-                   jpegImgTest = /\/jpeg$/ ,
-                   pngImgTest = /\/png$/
-               if (!(jpgImgTest.test(fileInfo.type) || jpegImgTest.test(fileInfo.type) || pngImgTest.test(fileInfo.type))){//判断格式
-                   alert('请上传jpg,png,jpeg格式的图片')
-                   return
-               }else {
-                   if (size > 1024) {//判断尺寸
-                       alert('请选择1M以内的图片！')
-                       return false
-                   }
-               }
-               this.$set(this.imgs,fileInfo.name+'?'+new Date().getTime(),fileInfo)
-               let $filePath=URL.createObjectURL(this.fil[0])
-               if(this.isList){
-                   this.currFormData.currCover.imgSrc = $filePath
-               }else {
-                   !this.currFormData.currCover && (this.currFormData.currCover = {})
-                   this.currFormData.currCover.imgSrc = $filePath
-               }
-               this.previewImgSrc= fileInfo.name//设置预览地址文字
-               this.$emit('getImgs',this.imgs)
+               let fileDom = this.$refs.shopImg
+               let {imgObjs,imgSrcArr} = this
+               let imgsLength = 3
+               this.$zj_globalMethods.previewImg(fileDom,imgsLength,imgObjs,imgSrcArr)
+           },
+           /*点击删除图片*/
+           delPreviewImg(e){
+               this.$zj_globalMethods.delPreviewImg(e,this.imgSrcArr,this.imgObjs,this.$refs.shopImg)
            },
        },
         computed:{
@@ -137,8 +146,7 @@
         width:60px !important;
     }
     .addShopsInfoBoxDiv{
-        text-align: center;
-        padding:20px 0;
+
     }
 
 

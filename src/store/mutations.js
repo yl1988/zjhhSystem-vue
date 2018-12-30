@@ -1,8 +1,9 @@
-import Vue from 'vue'
 import {
     RECEIVE_USER_INFO,
     RECEIVE_CURRICULUMLIST,
-    RECEIVE_SHOPCLASSIFY
+    RECEIVE_SHOPCLASSIFY,
+    RECEIVE_PAINTERS,
+    RECEIVE_SHOPLISTS
 } from './mutation-type'
 
 export default {
@@ -14,5 +15,13 @@ export default {
     },
     [RECEIVE_SHOPCLASSIFY](state, {shopClassifys}) {//获取商品分类信息
         state.shopClassifys = shopClassifys
+    },
+    [RECEIVE_PAINTERS](state,{painters}){
+        //console.log(painters)
+        state.painters = painters
+    },
+    [RECEIVE_SHOPLISTS](state,{shopLists}){
+        //console.log( shopLists)
+        state.shopLists = shopLists
     }
 }

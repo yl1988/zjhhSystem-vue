@@ -3,7 +3,8 @@ import {
     RECEIVE_CURRICULUMLIST,
     RECEIVE_USER_INFO,
     RECEIVE_SHOPCLASSIFY,
-    SUBMIT_CURRFORMSINFO
+    RECEIVE_PAINTERS,
+    RECEIVE_SHOPLISTS
 
 } from './mutation-type'
 import {
@@ -16,7 +17,9 @@ import {
     reqLogin,
     reqShops,
     reqSystem,
-    reqShopClassify
+    reqShopClassify,
+    reqPainters,
+    reqShopLists
 } from '../api'
 
 export default {
@@ -30,6 +33,7 @@ export default {
             commit(RECEIVE_CURRICULUMLIST, {currLists})
         }
     },
+
     /*异步获取商品分类*/
     async getShopClassify({commit}) {
         const result = await reqShopClassify()
@@ -37,5 +41,24 @@ export default {
             const shopClassifys = result.shopClassifys
             commit(RECEIVE_SHOPCLASSIFY, {shopClassifys})
         }
-    }
+    },
+    /*异步获取画家列表*/
+    async getPainters ({commit}) {
+        const result = await reqPainters()
+        console.log(result)
+        if(result.code === 0){
+            const painters = result.data.painters
+            commit(RECEIVE_PAINTERS,{painters})
+        }
+    },
+    /*异步获取商品列表信息*/
+    async getShopLists ({commit}) {
+        const result = await reqShopLists()
+        console.log(result)
+        if(result.code === 0){
+            const shopLists = result.shopLists
+            commit(RECEIVE_SHOPLISTS,{shopLists})
+        }
+    },
+
 }

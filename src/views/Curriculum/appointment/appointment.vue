@@ -91,6 +91,7 @@
     .appointment-div{
         width:90%;
         min-width:510px;
+        margin-bottom:30px;
         .appo-titleBox{
             margin:0 0 20px 0;
             .appo-title{

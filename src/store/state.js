@@ -502,5 +502,7 @@ export default {
             isShow: false
         },
     ],//预约情况
-    shopClassifys:[]//商品分类
+    shopClassifys:[],//商品分类
+    painters:[],//画家列表
+    shopLists:[],//商品列表
 }

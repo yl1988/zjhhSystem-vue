@@ -34,6 +34,7 @@
                             <span class="curr-save" @click="showWarnFun();saveShopClassify()">{{buttonName}}</span>
                         </div>
                     </div>
+                    <Paging v-show="!isOpenAdd" :total-page="totalPage" :current-page="currentPage" :pagegroup="pagegroup"/>
                 </div>
             </div>
         </div>
@@ -43,10 +44,11 @@
 <script>
     import {subShopClassify} from '../../../api'
     import {mapState} from 'vuex'
+    import Paging from '../../../components/Paging/Paging'
     export default {
         name: 'shopsclassify',
         components:{
-           // SubmitClassify
+           Paging
         },
         data(){
             return{
@@ -54,7 +56,11 @@
                 buttonName:'添加',
                 shopClassifyName:'',//
                 showWarn:false,
-                popMsg:'添加成功'
+                popMsg:'添加成功',
+                totalPage: 20,
+                currentPage: 1,
+                pagegroup: 5,
+                contents:[]
             }
         },
         methods:{
@@ -208,9 +214,6 @@
                     .shops_c_edit{
                         border-right:solid 1px #999999;
                         height:20px;
-                        span{
-
-                        }
 
                     }
                 }

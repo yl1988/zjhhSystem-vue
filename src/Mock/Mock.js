@@ -270,6 +270,7 @@ Mock.mock('/curriculum/appointment',{
     code:0,
     data:data.appoinLists
 })
+
 /*返回商品分类信息*/
 Mock.mock('/shops/shopsclassify',{
     code:0,
@@ -296,6 +297,47 @@ Mock.mock('/shops/shopsclassify',{
         },
     ]
 })
+/*返回商品列表信息*/
+Mock.mock('/shops/shoplists',{
+    code:0,
+    shopLists:[
+        {
+            name:Mock.Random.cname(),
+            classify:Mock.Random.cname(),
+            brand:Mock.Random.cname(),
+            'price|10-60':1,
+            id:'0'
+        },
+        {
+            name:Mock.Random.cname(),
+            classify:Mock.Random.cname(),
+            brand:Mock.Random.cname(),
+            'price|10-60':1,
+            id:'1'
+        },
+        {
+            name:Mock.Random.cname(),
+            classify:Mock.Random.cname(),
+            brand:Mock.Random.cname(),
+            'price|10-60':1,
+            id:'2'
+        },
+        {
+            name:Mock.Random.cname(),
+            classify:Mock.Random.cname(),
+            brand:Mock.Random.cname(),
+            'price|10-60':1,
+            id:'3'
+        },
+        {
+            name:Mock.Random.cname(),
+            classify:Mock.Random.cname(),
+            brand:Mock.Random.cname(),
+            'price|10-60':1,
+            id:'4'
+        },
+    ]
+})
 /*接收前台发送来的课程信息*/
 Mock.mock('/savecurrinfo',function (options) {
     console.log(options)
@@ -314,5 +356,49 @@ Mock.mock(/^\/addShopInfo/,function (options) {
 })
 /*接收前台发过来的商品图片*/
 Mock.mock(/shopImgs/,function (options) {
+    console.log(options)
+})
+/*接收前台发送过来的画家信息*/
+Mock.mock(/painterInfo/,function (options) {
+    console.log(options)
+})
+/*接收前台发送过来的画家肖像*/
+Mock.mock(/painterImg/,function (options) {
+    console.log(options)
+})
+/*返回画家信息*/
+Mock.mock('/shops/oilpaintinglists/',{
+    code:0,
+    data:{
+        painters:[
+            {
+                name:Mock.Random.cname(),
+                id:'0'
+            },
+            {
+                name:Mock.Random.cname(),
+                id:'1'
+            },
+            {
+                name:Mock.Random.cname(),
+                id:'2'
+            },
+            {
+                name:Mock.Random.cname(),
+                id:'3'
+            },
+            {
+                name:Mock.Random.cname(),
+                id:'4'
+            },
+        ]
+    }
+})
+/*接收前台发送过来的油画信息*/
+Mock.mock(/oilpatingInfo/,function (options) {
+    console.log(options)
+})
+/*接收前台发送过来的画家肖像*/
+Mock.mock(/oilpatingImg/,function (options) {
     console.log(options)
 })
