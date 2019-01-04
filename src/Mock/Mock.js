@@ -306,6 +306,7 @@ Mock.mock('/shops/shoplists',{
             classify:Mock.Random.cname(),
             brand:Mock.Random.cname(),
             'price|10-60':1,
+            isShelf:Mock.Random.integer(0,1),
             id:'0'
         },
         {
@@ -313,6 +314,7 @@ Mock.mock('/shops/shoplists',{
             classify:Mock.Random.cname(),
             brand:Mock.Random.cname(),
             'price|10-60':1,
+            isShelf:Mock.Random.integer(0,1),
             id:'1'
         },
         {
@@ -320,6 +322,7 @@ Mock.mock('/shops/shoplists',{
             classify:Mock.Random.cname(),
             brand:Mock.Random.cname(),
             'price|10-60':1,
+            isShelf:Mock.Random.integer(0,1),
             id:'2'
         },
         {
@@ -327,6 +330,7 @@ Mock.mock('/shops/shoplists',{
             classify:Mock.Random.cname(),
             brand:Mock.Random.cname(),
             'price|10-60':1,
+            isShelf:Mock.Random.integer(0,1),
             id:'3'
         },
         {
@@ -334,6 +338,7 @@ Mock.mock('/shops/shoplists',{
             classify:Mock.Random.cname(),
             brand:Mock.Random.cname(),
             'price|10-60':1,
+            isShelf:Mock.Random.integer(0,1),
             id:'4'
         },
     ]
@@ -401,4 +406,239 @@ Mock.mock(/oilpatingInfo/,function (options) {
 /*接收前台发送过来的画家肖像*/
 Mock.mock(/oilpatingImg/,function (options) {
     console.log(options)
+})
+/*商品查询*/
+Mock.mock(/checkshop/,function (options) {
+    console.log(options)
+    return {
+        code:0,
+        shopLists:[
+            {
+                name:Mock.Random.cname(),
+                classify:Mock.Random.cname(),
+                brand:Mock.Random.cname(),
+                'price|10-60':1,
+                isShelf:Mock.Random.integer(0,1),
+                id:'0'
+            },
+            {
+                name:Mock.Random.cname(),
+                classify:Mock.Random.cname(),
+                brand:Mock.Random.cname(),
+                'price|10-60':1,
+                isShelf:Mock.Random.integer(0,1),
+                id:'1'
+            },
+            {
+                name:Mock.Random.cname(),
+                classify:Mock.Random.cname(),
+                brand:Mock.Random.cname(),
+                'price|10-60':1,
+                isShelf:Mock.Random.integer(0,1),
+                id:'2'
+            },
+            {
+                name:Mock.Random.cname(),
+                classify:Mock.Random.cname(),
+                brand:Mock.Random.cname(),
+                'price|10-60':1,
+                isShelf:Mock.Random.integer(0,1),
+                id:'3'
+            },
+            {
+                name:Mock.Random.cname(),
+                classify:Mock.Random.cname(),
+                brand:Mock.Random.cname(),
+                'price|10-60':1,
+                isShelf:Mock.Random.integer(0,1),
+                id:'4'
+            },
+        ]
+    }
+})
+/*返回画家列表信息*/
+Mock.mock('/shops/painterlists',{
+    code:0,
+    painterLists:[
+        {
+            name:Mock.Random.cname(),
+            gender:Mock.Random.integer(0,1),
+            isShelf:Mock.Random.integer(0,1),
+            id:'0'
+        }, {
+            name:Mock.Random.cname(),
+            gender:Mock.Random.integer(0,1),
+            isShelf:Mock.Random.integer(0,1),
+            id:'0'
+        },
+        {
+            name:Mock.Random.cname(),
+            gender:Mock.Random.integer(0,1),
+            isShelf:Mock.Random.integer(0,1),
+            id:'0'
+        },
+        {
+            name:Mock.Random.cname(),
+            gender:Mock.Random.integer(0,1),
+            isShelf:Mock.Random.integer(0,1),
+            id:'0'
+        },
+        {
+            name:Mock.Random.cname(),
+            gender:Mock.Random.integer(0,1),
+            isShelf:Mock.Random.integer(0,1),
+            id:'0'
+        },
+
+    ]
+})
+/*画家查询*/
+Mock.mock(/checkpainter/,function (options) {
+    console.log(options)
+    return {
+        code:0,
+        painterLists:[
+            {
+                name:Mock.Random.cname(),
+                classify:Mock.Random.cname(),
+                brand:Mock.Random.cname(),
+                'price|10-60':1,
+                isShelf:Mock.Random.integer(0,1),
+                id:'0'
+            },
+            {
+                name:Mock.Random.cname(),
+                classify:Mock.Random.cname(),
+                brand:Mock.Random.cname(),
+                'price|10-60':1,
+                isShelf:Mock.Random.integer(0,1),
+                id:'1'
+            },
+            {
+                name:Mock.Random.cname(),
+                classify:Mock.Random.cname(),
+                brand:Mock.Random.cname(),
+                'price|10-60':1,
+                isShelf:Mock.Random.integer(0,1),
+                id:'2'
+            },
+            {
+                name:Mock.Random.cname(),
+                classify:Mock.Random.cname(),
+                brand:Mock.Random.cname(),
+                'price|10-60':1,
+                isShelf:Mock.Random.integer(0,1),
+                id:'3'
+            },
+            {
+                name:Mock.Random.cname(),
+                classify:Mock.Random.cname(),
+                brand:Mock.Random.cname(),
+                'price|10-60':1,
+                isShelf:Mock.Random.integer(0,1),
+                id:'4'
+            },
+        ]
+    }
+})
+/*返回油画列表信息*/
+Mock.mock('/shops/oilpaintinglists',{
+    code:0,
+    oilpaintingLists:[
+        {
+            painterName:Mock.Random.cname(),
+            title:Mock.Random.cname(),
+            isShelf:Mock.Random.integer(0,1),
+            id:'0'
+        },
+        {
+            painterName:Mock.Random.cname(),
+            title:Mock.Random.cname(),
+            isShelf:Mock.Random.integer(0,1),
+            id:'0'
+        },
+        {
+            painterName:Mock.Random.cname(),
+            title:Mock.Random.cname(),
+            isShelf:Mock.Random.integer(0,1),
+            id:'0'
+        },
+        {
+            painterName:Mock.Random.cname(),
+            title:Mock.Random.cname(),
+            isShelf:Mock.Random.integer(0,1),
+            id:'0'
+        },
+        {
+            painterName:Mock.Random.cname(),
+            title:Mock.Random.cname(),
+            isShelf:Mock.Random.integer(0,1),
+            id:'0'
+        },
+        {
+            painterName:Mock.Random.cname(),
+            title:Mock.Random.cname(),
+            isShelf:Mock.Random.integer(0,1),
+            id:'0'
+        },
+        {
+            painterName:Mock.Random.cname(),
+            title:Mock.Random.cname(),
+            isShelf:Mock.Random.integer(0,1),
+            id:'0'
+        },
+
+    ]
+})
+/*油画查询*/
+Mock.mock(/checkoilpaitain/,function (options) {
+    console.log(options)
+    return {
+        code:0,
+        oilpaintingLists:[
+            {
+                painterName:Mock.Random.cname(),
+                title:Mock.Random.cname(),
+                isShelf:Mock.Random.integer(0,1),
+                id:'0'
+            },
+            {
+                painterName:Mock.Random.cname(),
+                title:Mock.Random.cname(),
+                isShelf:Mock.Random.integer(0,1),
+                id:'0'
+            },
+            {
+                painterName:Mock.Random.cname(),
+                title:Mock.Random.cname(),
+                isShelf:Mock.Random.integer(0,1),
+                id:'0'
+            },
+            {
+                painterName:Mock.Random.cname(),
+                title:Mock.Random.cname(),
+                isShelf:Mock.Random.integer(0,1),
+                id:'0'
+            },
+            {
+                painterName:Mock.Random.cname(),
+                title:Mock.Random.cname(),
+                isShelf:Mock.Random.integer(0,1),
+                id:'0'
+            },
+            {
+                painterName:Mock.Random.cname(),
+                title:Mock.Random.cname(),
+                isShelf:Mock.Random.integer(0,1),
+                id:'0'
+            },
+            {
+                painterName:Mock.Random.cname(),
+                title:Mock.Random.cname(),
+                isShelf:Mock.Random.integer(0,1),
+                id:'0'
+            },
+
+        ]
+    }
 })

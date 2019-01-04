@@ -106,6 +106,9 @@ body {
   color: red !important;
   text-align: center !important;
 }
+.colord52d81 {
+  color: #d52d81;
+}
 /*页面底部*/
 .page-body {
   height: 82.4%;
@@ -178,7 +181,7 @@ body {
   padding: 20px 0;
 }
 .addInfoBoxDiv .infoBox {
-  width: 320px;
+  width: 321px;
   display: inline-block;
   vertical-align: top;
   text-align: left;
@@ -278,6 +281,9 @@ body {
 .addInfoBoxDiv .infoBox .infoTextareaLi label {
   vertical-align: top;
 }
+.addInfoBoxDiv .infoBox .infoTextareaLi .infoTextareaIcon {
+  margin-top: 4px;
+}
 .addInfoBoxDiv .infoBox .infoTextareaLi .infoTextarea {
   height: 100px;
   margin-top: 8px;
@@ -347,8 +353,11 @@ body {
   font-size: 14px;
   margin-right: 10px;
 }
-.checkInfoBox .checkInfoLi input {
+.checkInfoBox .checkInfoLi input,
+.checkInfoBox .checkInfoLi select {
   border: solid 1px #d52d81;
+  width: 133px;
+  padding-left: 5px;
 }
 .checkInfoBox .checkBtnBox .curr-saveInfo {
   margin: 0;
@@ -373,7 +382,6 @@ body {
 }
 .listInfoTable .listInfoTitleLiBox .listInfoTitleUl .listInfoTitleLi {
   height: 38px;
-  width: 20%;
 }
 .listInfoTable .listInfoContentLiBox {
   height: 38px;
@@ -383,20 +391,33 @@ body {
 }
 .listInfoTable .listInfoContentLiBox .listInfoContentUl .listInfoContentli {
   height: 38px;
-  width: 20%;
-}
-.listInfoTable .listInfoContentLiBox .listInfoContentUl .listInfoContentli:last-of-type,
-.listInfoTable .listInfoContentLiBox .listInfoContentUl .listInfoContentli:nth-last-of-type(2) {
-  width: 10%;
 }
 .listInfoTable .listInfoContentLiBox .listInfoContentUl .listInfoContentli:last-of-type span,
 .listInfoTable .listInfoContentLiBox .listInfoContentUl .listInfoContentli:nth-last-of-type(2) span {
   cursor: pointer;
-  color: #d52d81;
   width: 50px;
+}
+.listInfoTable .listInfoContentLiBox .listInfoContentUl .listInfoContentli:nth-last-of-type(2) span {
+  color: #d52d81;
 }
 .listInfoTable .listInfoContentLiBox .listInfoContentUl .listInfoEdit {
   border-right: solid 1px #999999;
   height: 20px !important;
+}
+/*设置信息列表背景颜色*/
+.listInfoContentLiBox:nth-of-type(3) {
+  background: #ffe9e9;
+}
+.listInfoContentLiBox:nth-of-type(5) {
+  background: #e9ffed;
+}
+.listInfoContentLiBox:nth-of-type(7) {
+  background: #fbffe9;
+}
+.listInfoContentLiBox:nth-of-type(9) {
+  background: #e9f7ff;
+}
+.listInfoContentLiBox:nth-of-type(11) {
+  background: #f3e9ff;
 }
 /*# sourceMappingURL=common.css.map */

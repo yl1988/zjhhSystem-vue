@@ -13,6 +13,10 @@ export const subOilpatingInfo = (oilpatingInfo) => ajax('/oilpatingInfo',{oilpat
 export const subOilpatingImg = (oilpatingImg) => ajax('/oilpatingImg',{oilpatingImg},'POST')//油画图片
 export const reqPainters = () => ajax('/shops/oilpaintinglists/')//异步获取画家列表信息
 export const reqShopLists= () => ajax('/shops/shoplists')//异步获取商品列表信息
+export const subCheckShop = (shopName,shopClassify) => ajax('/checkshop',{shopName,shopClassify})//商品查询
+export const subCheckPainter = (painterName,painterGender) => ajax('/checkpainter',{painterName,painterGender})//画家查询
+export const reqPainterList = ()=> ajax('/shops/painterlists')//画家列表
+export const reqOilpaintingLists = ()=> ajax('/shops/oilpaintinglists')//油画列表
 
 export const reqCurriculum = ()=> ajax('/curriculum')
 export const reqCurriList = ()=> ajax('/curriculum/curriculumlist')

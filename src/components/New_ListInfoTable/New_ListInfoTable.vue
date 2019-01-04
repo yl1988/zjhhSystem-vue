@@ -48,7 +48,7 @@
             <li class="curriculumInfoLi curr-explainLi clear">
                 <img src="./images/icon_nc_explain.png" width="20" height="20" class="curr-nameImg left">
                 <label class="curriculumInfoName left">课程说明</label>
-                <textarea class="curr-explain left" v-model="currFormData.explain"></textarea>
+                <textarea class="curr-explain left" id = 'editor' v-model="currFormData.explain"></textarea>
             </li>
         </ul>
         <ul class="curriculumInfoUL newCurriculum curr_new-list rightInfo">
@@ -321,7 +321,9 @@
             this.isList ? (this.currFormData = this.currListInfo) : (this.currFormData = {})
             console.log(this.currFormData)
             this.$nextTick(()=>{
-            })
+            });
+
+            //var editor = CKEDITOR.instances.editor2
 
         },
         watch:{

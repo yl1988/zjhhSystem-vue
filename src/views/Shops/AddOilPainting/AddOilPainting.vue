@@ -7,12 +7,12 @@
                     <div class="addInfoBoxDiv">
                         <ul class="addOilpaintingsInfoBox infoBox">
                             <li class="addOilpaintingInfoLi infoLi">
-                                <img src="" width="20" height="20" class="infoIcon">
+                                <img src="../images/icon_shop-title.png" width="20" height="20" class="infoIcon">
                                 <label class="infoLable" >标&nbsp;&nbsp;&nbsp;&nbsp;题</label>
                                 <input type="text" class="infoInput" v-model="oilPaintingInfoData.name">
                             </li>
                             <li class="addShopsInfoLi addFileInfoLi infoLi">
-                                <img src="" width="20" height="20" class="infoIcon">
+                                <img src="../images/icon_shop-previw.png" width="20" height="20" class="infoIcon">
                                 <label class="infoLable" >预&nbsp;览&nbsp;图</label>
                                 <div class="addShopImgDiv addFileInfoImgDiv clear">
                                     <div class="shopImgBox infoImgBox left" v-for="(imgSrc,index) in imgSrcArr" :key="index"
@@ -27,17 +27,17 @@
                                 </div>
                             </li>
                             <li class="addOilpaintingInfoLi infoLi">
-                                <img src="" width="20" height="20" class="infoIcon">
+                                <img src="../images/icon_shop-material.png" width="20" height="20" class="infoIcon">
                                 <label class="infoLable" >材&nbsp;&nbsp;&nbsp;&nbsp;料</label>
                                 <input type="text" class="infoInput" v-model="oilPaintingInfoData.material">
                             </li>
                             <li class="addOilpaintingInfoLi infoLi">
-                                <img src="" width="20" height="20" class="infoIcon">
+                                <img src="../images/icon_shop-size.png" width="20" height="20" class="infoIcon">
                                 <label class="infoLable" >尺&nbsp;&nbsp;&nbsp;&nbsp;寸</label>
                                 <input type="text" class="infoInput" v-model="oilPaintingInfoData.size">
                             </li>
                             <li class="addOilpaintingInfoLi infoLi">
-                                <img src="" width="20" height="20" class="infoIcon">
+                                <img src="../images/icon_shop-classify.png" width="20" height="20" class="infoIcon">
                                 <label class="infoLable" >所属画家</label>
                                 <select class="infoInput" v-model="oilPaintingInfoData.painter">
                                     <option :value ="painter.name" v-for="(painter,index) in painters" :key="index">{{painter.name}}</option>

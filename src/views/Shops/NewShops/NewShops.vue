@@ -7,39 +7,37 @@
                     <div class="addInfoBoxDiv">
                         <ul class="addShopsInfoBox infoBox leftInfo">
                             <li class="addShopsInfoLi infoLi">
-                                <img src="" width="20" height="20" class="infoIcon">
+                                <img src="../images/icon_shop-name.png" width="20" height="20" class="infoIcon">
                                 <label class="infoLable" >商品名称</label>
                                 <input type="text" class="infoInput" v-model="shopInfoData.name">
                             </li>
                             <li class="addShopsInfoLi infoLi">
-                                <img src="" width="20" height="20" class="infoIcon">
+                                <img src="../images/icon_shop-brand.png" width="20" height="20" class="infoIcon">
                                 <label class="infoLable" >品&nbsp;&nbsp;&nbsp;&nbsp;牌</label>
                                 <input type="text" class="infoInput" v-model="shopInfoData.brand">
                             </li>
                             <li class="addShopsInfoLi infoLi">
-                                <img src="" width="20" height="20" class="infoIcon">
+                                <img src="../images/icon_shop-classify.png" width="20" height="20" class="infoIcon">
                                 <label class="infoLable" >所属分类</label>
                                 <select class="infoInput" v-model="shopInfoData.classify">
                                     <option :value ="shopClassify.name" v-for="(shopClassify,index) in shopClassifys" :key="index">{{shopClassify.name}}</option>
                                 </select>
                             </li>
                             <li class="addShopsInfoLi infoLi">
-                                <img src="" width="20" height="20" class="infoIcon">
+                                <img src="../images/icon_shop-price.png" width="20" height="20" class="infoIcon">
                                 <label class="infoLable" >商品单价</label>
                                 <input type="number" class="infoInput" v-model="shopInfoData.price">
                             </li>
                             <li class="addShopsInfoLi infoLi">
-                                <img src="" width="20" height="20" class="infoIcon">
+                                <img src="../images/icon_shop-shelf.png" width="20" height="20" class="infoIcon">
                                 <label class="infoLable" >是否上架</label>
                                 <select class="infoInput isShelf_short" v-model="shopInfoData.isShelf">
                                     <option value ="0">上架</option>
                                     <option value ="1">下架</option>
                                 </select>
                             </li>
-                        </ul>
-                        <ul class="addShopsInfoBox infoBox rightInfo">
                             <li class="addShopsInfoLi addFileInfoLi infoLi">
-                                <img src="" width="20" height="20" class="infoIcon">
+                                <img src="../images/icon_shop-img.png" width="20" height="20" class="infoIcon">
                                 <label class="infoLable" >商品图片</label>
                                 <div class="addShopImgDiv addFileInfoImgDiv clear">
                                     <div class="shopImgBox infoImgBox left" v-for="(imgSrc,index) in imgSrcArr" :key="index"
@@ -53,10 +51,13 @@
                                     </div>
                                 </div>
                             </li>
+                        </ul>
+                        <ul class="addShopsInfoBox infoBox rightInfo">
                             <li class="addShopsInfoLi infoTextareaLi infoLi clear">
-                                <img src="" width="20" height="20" class="infoIcon infoTextareaIcon left">
-                                <label class="infoLable infoTextareaLable left" >商品介绍</label>
-                                <textarea class="infoInput infoTextarea left" v-model="shopInfoData.introduce"></textarea>
+                                <img src="../images/icon_shop-introduce.png" width="20" height="20" class="infoIcon infoTextareaIcon">
+                                <label class="infoLable infoTextareaLable" >商品介绍</label>
+                                <!--<textarea class="infoInput infoTextarea left" id = 'editor' v-model="shopInfoData.introduce"></textarea>-->
+                                <textarea class="editorBox" id = 'editor'></textarea>
                             </li>
                         </ul>
                     </div>
@@ -90,6 +91,9 @@
        methods:{
             /*保存商品信息*/
            saveShopInfo(){
+               //console.log(window.CKEDITOR.instances)
+              // window.CKEDITOR.tools.callFunction(1,'../NewImg/20190103164155.png','')
+              // console.log(window.CKEDITOR.tools.callFunction())
                let {shopInfoData,imgObjs} = this
                if(!shopInfoData.name.trim()){
                    console.log()
@@ -136,6 +140,16 @@
        },
         computed:{
             ...mapState(['shopClassifys'])
+        },
+        mounted() {
+            //window.CKEDITOR.replace("editor", { width: "100%", toolbar: "Full"})
+            window.CKEDITOR.replace( 'editor', {
+               //filebrowserBrowseUrl: 'http://47.96.230.239:8088/page/UploadImg.ashx',
+               //filebrowserUploadUrl: 'http://47.96.230.239:8088/page/UploadImg.ashx',
+                width: "100%", toolbar: "Full"
+            })
+           //window.CKEDITOR.tools.callFunction(1,'../NewImg/20190103164155.png','')
+
         }
     }
 </script>
@@ -145,8 +159,11 @@
     .isShelf_short{
         width:60px !important;
     }
-    .addShopsInfoBoxDiv{
-
+    .cke_chrome{
+        margin-top:10px !important;
+    }
+    .cke_top{
+        width:100% !important;
     }
 
 

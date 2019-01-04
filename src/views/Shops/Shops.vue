@@ -18,11 +18,7 @@
                     {
                         title:'商品分类',
                         path:'/shops/shopsclassify'
-                    },/*
-                    {
-                        title:'新增品类',
-                        path:'/shops/AddClassify'
-                    },*/
+                    },
                     {
                         title:'添加商品',
                         path:'/shops/newshops'
@@ -37,7 +33,7 @@
                     },
                     {
                         title:'画家列表',
-                        path:'/shops/oilpaintinglists'
+                        path:'/shops/painterlists',
                     },
                     {
                         title:'添加油画',
@@ -45,7 +41,7 @@
                     },
                     {
                         title:'油画列表',
-                        path:'/shops/painterlists',
+                        path:'/shops/oilpaintinglists'
                     },
                 ]
             }

@@ -1,5 +1,5 @@
 <template>
-    <div style="height:100%;">
+    <div style="height:100%;" >
         <div class="LoginSlot" style="height:15%;"></div>
         <div class="login-logoBox">
             <img src="../../../public/common/images/logo.png" class="login-logo" width="145" height="148">
@@ -25,10 +25,13 @@
                 <span class="loginButton" id="btn" @click="trimFun('pwd',false);trimFun('user',false);login()"></span>
             </form>
         </div>
+        <div class="test"></div>
     </div>
 </template>
 
 <script>
+    import {reqPwdLogin} from "../../api";
+
     export default {
         name: 'login',
         data () {
@@ -42,13 +45,12 @@
         methods:{
          async login () {//登录
              //console.log(event)
-             let result
              let {name,pwd} =this
              name = name.trim()
              pwd = pwd.trim()
              if(name && pwd){
                  //发送异步ajax请求
-                result = await reqPwdLogin({name,pwd})
+                let result = await reqPwdLogin({name,pwd})
              }
         },
             /*
@@ -91,10 +93,7 @@
 </script>
 
 <style lang="less" type="text/less">
-
     .login-logoBox{
-        //padding-top:12.3%;
-        //padding-top:12.3%;
         text-align:center;
         margin-bottom:56px;
         line-height:normal;

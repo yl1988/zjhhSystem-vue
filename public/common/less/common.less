@@ -60,6 +60,9 @@ body{
   color:red !important;
   text-align:center !important;
 }
+.colord52d81{
+  color: #d52d81;
+}
 /*页面底部*/
 .page-body{
   height:82.4%;
@@ -135,7 +138,7 @@ body{
   text-align: center;
   padding:20px 0;
   .infoBox{
-    width:320px;
+    width:321px;
     display:inline-block;
     vertical-align:top;
     text-align:left;
@@ -237,7 +240,7 @@ body{
         vertical-align:top;
       }
       .infoTextareaIcon{
-
+        margin-top:4px;
       }
       .infoTextarea{
         height:100px;
@@ -308,8 +311,10 @@ body{
       font-size:14px;
       margin-right:10px;
     }
-    input{
+    input,select{
       border:solid 1px #d52d81;
+      width:133px;
+      padding-left:5px;
     }
   }
   .checkBtnBox{
@@ -335,10 +340,6 @@ body{
       border-bottom:solid 1px #999999;
       .listInfoTitleLi{
         height:38px;
-        width:20%;
-        strong{
-
-        }
       }
     }
   }
@@ -348,13 +349,15 @@ body{
       padding-top:10px;
       .listInfoContentli{
         height:38px;
-        width:20%;
         &:last-of-type,&:nth-last-of-type(2){
-          width:10%;
           span{
             cursor:pointer;
-            color: #d52d81;
             width:50px;
+          }
+        }
+        &:nth-last-of-type(2){
+          span{
+            color: #d52d81;
           }
         }
       }
@@ -363,5 +366,24 @@ body{
         height:20px !important;
       }
     }
+  }
+}
+/*设置信息列表背景颜色*/
+//let colorArr = ['#ffe9e9', '#e9ffed', '#fbffe9', '#e9f7ff', '#f3e9ff']
+.listInfoContentLiBox{
+  &:nth-of-type(3){
+    background:#ffe9e9;
+  }
+  &:nth-of-type(5){
+    background:#e9ffed;
+  }
+  &:nth-of-type(7){
+    background:#fbffe9;
+  }
+  &:nth-of-type(9){
+    background:#e9f7ff;
+  }
+  &:nth-of-type(11){
+    background:#f3e9ff;
   }
 }

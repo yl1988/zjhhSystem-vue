@@ -26,7 +26,7 @@
                                     <li class="appo-table-titleText">邮箱</li>
                                 </ul>
                             </li>
-                            <li class="appo-table-info" v-for="(appinInfo,index) in contents.appinInfos" :key="index">
+                            <li class="appo-table-info listInfoContentLiBox" v-for="(appinInfo,index) in contents.appinInfos" :key="index">
                                 <ul class="appo-table-infoUl clear clear">
                                     <li class="appo-table-infoText">{{appinInfo.name}}</li>
                                     <li class="appo-table-infoText">{{appinInfo.userClassify}}</li>
@@ -80,7 +80,7 @@
         mounted(){
             this.contents= this.appoinLists[0].contents[0]
             this.$nextTick(()=>{
-                this.$zj_globalMethods.setBkCoror('.appo-table-info')
+                //this.$zj_globalMethods.setBkCoror('.appo-table-info')
             })
         }
     }

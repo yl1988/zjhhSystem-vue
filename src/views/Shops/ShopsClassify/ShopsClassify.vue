@@ -11,7 +11,7 @@
                                 <strong class="classifyTitleName">品类名称</strong>
                                 <strong class="classifyOptions">操作</strong>
                             </li>
-                            <li class="shops_c_content clear" v-for="(classify,index) in shopClassifys" :key="index">
+                            <li class="shops_c_content listInfoContentLiBox clear" v-for="(classify,index) in shopClassifys" :key="index">
                                 <ul class="shop_c_contentUl clear">
                                     <li class="shops_c_contentli shop_c_classifyName left">{{classify.name}}</li>
                                     <li class="shops_c_contentli shops_c_edit left shops_optionButton"><span @click="openAdd" :data-index="index" :data-name="classify.name">编辑</span></li>

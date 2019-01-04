@@ -7,12 +7,12 @@
                     <div class="addInfoBoxDiv">
                         <ul class="addPaintersInfoBox infoBox">
                             <li class="addPainterInfoLi infoLi">
-                                <img src="" width="20" height="20" class="infoIcon">
+                                <img src="../images/icon_shop-paintername.png" width="20" height="20" class="infoIcon">
                                 <label class="infoLable" >画家姓名</label>
                                 <input type="text" class="infoInput" v-model="painterInfoData.name">
                             </li>
                             <li class="addPainterInfoLi infoLi">
-                                <img src="" width="20" height="20" class="infoIcon">
+                                <img src="../images/icon_shop-gender.png" width="20" height="20" class="infoIcon">
                                 <label class="infoLable">画家性别</label>
                                 <div class="radioBox genderBox">
                                     <input type="radio" name="sex" id="isBoy" class="infoInput" value="0" v-model="painterInfoData.gender">
@@ -22,7 +22,7 @@
                                 </div>
                             </li>
                             <li class="addPainterInfoLi addFileInfoLi infoLi addPainterImgLi clear">
-                                <img src="" width="20" height="20" class="infoIcon left">
+                                <img src="../images/icon_shop-faceimg.png" width="20" height="20" class="infoIcon left">
                                 <label class="infoLable left" >商品肖像</label>
                                 <div class="addPainterImgDiv addFileInfoImgDiv left">
                                     <div class="painterImgBox infoImgBox left" v-for="(imgSrc,index) in imgSrcArr" :key="index" :data-index='index'>
@@ -36,12 +36,12 @@
                                 </div>
                             </li>
                             <li class="addPainterInfoLi infoTextareaLi infoLi clear">
-                                <img src="" width="20" height="20" class="infoIcon infoTextareaIcon left">
+                                <img src="../images/icon_shop-introduce.png" width="20" height="20" class="infoIcon infoTextareaIcon left">
                                 <label class="infoLable infoTextareaLable left" >商品简介</label>
                                 <textarea class="infoInput infoTextarea left" v-model="painterInfoData.introduce"></textarea>
                             </li>
                             <li class="addPainterInfoLi infoLi addPainterShelLi">
-                                <img src="" width="20" height="20" class="infoIcon">
+                                <img src="../images/icon_shop-shelf.png" width="20" height="20" class="infoIcon">
                                 <label class="infoLable" >是否上架</label>
                                 <select class="infoInput isShelf_short" v-model="painterInfoData.isShelf">
                                     <option value ="0">上架</option>

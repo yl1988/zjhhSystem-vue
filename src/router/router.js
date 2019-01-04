@@ -17,7 +17,6 @@ import AddPainter from '../views/Shops/AddPainter/AddPainter'
 import OilPaintingLists from '../views/Shops/OilPaintingLists/OilPaintingLists'
 import PainterLists from '../views/Shops/PainterLists/PainterLists'
 import ShopLists from '../views/Shops/ShopLists/ShopLists'
-import AddClassify from '../views/Shops/AddClassify/AddClassify'
 
 import System from '../views/System/System'
 import AddPersonnel from '../views/System/AddPersonnel/AddPersonnel'
@@ -27,19 +26,18 @@ import UserManagement from '../views/System/UserManagement/UserManagement'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
-      redirect: '/default'
+      redirect: '/default',
+        name:'default',
+        component:Default
     },
     {
       path: '/default',
       name: 'default',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: Default,
         meta:{
           navShow:true
@@ -105,15 +103,7 @@ export default new Router({
                   meta:{
                       navShow:true
                   }
-              },/*
-              {
-                  path:'/shops/AddClassify',
-                  name:'addclassify',
-                  component:AddClassify,
-                  meta:{
-                      navShow:true
-                  }
-              },*/
+              },
               {
                   path:'/shops/newshops',
                   name:'newshops',
