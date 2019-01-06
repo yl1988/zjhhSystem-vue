@@ -25,12 +25,12 @@
                 <span class="loginButton" id="btn" @click="trimFun('pwd',false);trimFun('user',false);login()"></span>
             </form>
         </div>
-        <div class="test"></div>
+        <div></div>
     </div>
 </template>
 
 <script>
-    import {reqPwdLogin} from "../../api";
+    import {userLogin} from "../../api";
 
     export default {
         name: 'login',
@@ -50,7 +50,22 @@
              pwd = pwd.trim()
              if(name && pwd){
                  //发送异步ajax请求
-                let result = await reqPwdLogin({name,pwd})
+                let result = await userLogin(name,pwd)
+                 if(result.code === 0){
+                    // alert('登录成功')
+                     console.log(result)
+                     let userInfo = {
+                         name,
+                         pwd
+                     }
+                     let userInfoStr = JSON.stringify(userInfo)
+                     window.localStorage.setItem('userInfo',userInfoStr)
+                     this.name = ''
+                     this.pwd = ''
+                     this.$router.replace('/default')
+                 }else{
+                     alert('用户名或密码错误')
+                 }
              }
         },
             /*

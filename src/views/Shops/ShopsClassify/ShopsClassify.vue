@@ -5,7 +5,9 @@
             <div class="page-contentBk">
                 <div class="lineLearBorder">
                     <div class="shopsClassifyBox" v-show="!isOpenAdd">
-                        <div class="addClassifyBox"><button @click="openAdd">新增品类</button></div>
+                        <div class="curr-saveInfo addShopBtnBox">
+                            <span class="curr-save addShopBtn"  @click="openAdd">新增品类</span>
+                        </div>
                         <ul class="shopsClassifyTable clear">
                             <li class="shops_c_title">
                                 <strong class="classifyTitleName">品类名称</strong>
@@ -21,7 +23,7 @@
                         </ul>
                     </div>
                     <div class="addShopClassifyBox" v-show="isOpenAdd">
-                        <div class="curr-saveInfo back">
+                        <div class="curr-saveInfo backBtn">
                             <span class="curr-save" @click="openAdd">返回</span>
                         </div>
                         <div class="addShopClassify">
@@ -131,8 +133,10 @@
             ...mapState(['shopClassifys'])
         },
         mounted(){
+            let that = this
+            let isLogin = this.$zj_globalMethods.judgeUserInfo(that)
             this.$nextTick(()=>{
-                this.$zj_globalMethods.setBkCoror('.shops_c_content')
+                //this.$zj_globalMethods.setBkCoror('.shops_c_content')
             })
         },
         watch:{
@@ -148,19 +152,12 @@
     @import "../../../../public/common/less/common";
     .shopsClassifyBox{
         min-height:300px;
-        .addClassifyBox{
-            button{
-                text-align: center;
-                display: inline-block;
-                border-radius: 20px;
-                background: #505050;
-                width: 165px;
-                height: 22px;
-                color: #ffffff;
-                font-size: 14px;
-                text-indent: 14px;
-                cursor:pointer;
+        .addShopBtnBox{
+            margin:0;
+            display:inline-block;
+            span{
                 letter-spacing: 5px;
+
             }
         }
         .shopsClassifyTable{
@@ -222,16 +219,6 @@
     }
     .addShopClassifyBox{
         min-height:290px;
-        .back{
-            width:50px;
-            margin-top:0;
-            span{
-                width:60px;
-                text-align:center;
-                letter-spacing:3px;
-                text-indent:3px;
-            }
-        }
         .addShopClassify{
             min-height:50px;
             margin-top:100px;

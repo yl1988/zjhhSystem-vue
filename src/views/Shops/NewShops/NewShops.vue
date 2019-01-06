@@ -4,79 +4,56 @@
         <div class="page-rightContent curriculumList curr_new-list" id="curriculumList">
             <div class="page-contentBk">
                 <div class="lineLearBorder">
-                    <div class="addInfoBoxDiv">
-                        <ul class="addShopsInfoBox infoBox leftInfo">
-                            <li class="addShopsInfoLi infoLi">
-                                <img src="../images/icon_shop-name.png" width="20" height="20" class="infoIcon">
-                                <label class="infoLable" >商品名称</label>
-                                <input type="text" class="infoInput" v-model="shopInfoData.name">
-                            </li>
-                            <li class="addShopsInfoLi infoLi">
-                                <img src="../images/icon_shop-brand.png" width="20" height="20" class="infoIcon">
-                                <label class="infoLable" >品&nbsp;&nbsp;&nbsp;&nbsp;牌</label>
-                                <input type="text" class="infoInput" v-model="shopInfoData.brand">
-                            </li>
-                            <li class="addShopsInfoLi infoLi">
-                                <img src="../images/icon_shop-classify.png" width="20" height="20" class="infoIcon">
-                                <label class="infoLable" >所属分类</label>
-                                <select class="infoInput" v-model="shopInfoData.classify">
-                                    <option :value ="shopClassify.name" v-for="(shopClassify,index) in shopClassifys" :key="index">{{shopClassify.name}}</option>
-                                </select>
-                            </li>
-                            <li class="addShopsInfoLi infoLi">
-                                <img src="../images/icon_shop-price.png" width="20" height="20" class="infoIcon">
-                                <label class="infoLable" >商品单价</label>
-                                <input type="number" class="infoInput" v-model="shopInfoData.price">
-                            </li>
-                            <li class="addShopsInfoLi infoLi">
-                                <img src="../images/icon_shop-shelf.png" width="20" height="20" class="infoIcon">
-                                <label class="infoLable" >是否上架</label>
-                                <select class="infoInput isShelf_short" v-model="shopInfoData.isShelf">
-                                    <option value ="0">上架</option>
-                                    <option value ="1">下架</option>
-                                </select>
-                            </li>
-                            <li class="addShopsInfoLi addFileInfoLi infoLi">
-                                <img src="../images/icon_shop-img.png" width="20" height="20" class="infoIcon">
-                                <label class="infoLable" >商品图片</label>
-                                <div class="addShopImgDiv addFileInfoImgDiv clear">
-                                    <div class="shopImgBox infoImgBox left" v-for="(imgSrc,index) in imgSrcArr" :key="index"
-                                         :data-index='index'>
-                                        <img :src="imgSrc">
-                                        <strong class="delPrewImg" @click="delPreviewImg" :data-index="index">-</strong>
-                                    </div>
-                                    <div class="addFileInfoImgBox left" v-show="imgSrcArr.length<3">
-                                        <input type="file" class="chooseInfoImg" name="shopImgs" multiple="multiple" accept=".jpg,.jpeg,.png" @change="selectShopImg" ref="shopImg">
-                                        <strong class="addFileInfoImg">+</strong>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul class="addShopsInfoBox infoBox rightInfo">
-                            <li class="addShopsInfoLi infoTextareaLi infoLi clear">
-                                <img src="../images/icon_shop-introduce.png" width="20" height="20" class="infoIcon infoTextareaIcon">
-                                <label class="infoLable infoTextareaLable" >商品介绍</label>
-                                <!--<textarea class="infoInput infoTextarea left" id = 'editor' v-model="shopInfoData.introduce"></textarea>-->
-                                <textarea class="editorBox" id = 'editor'></textarea>
-                            </li>
-                        </ul>
-                    </div>
+                    <Add_changeShopInfo :isAdd="isAdd" :isClearData="isClearData" @getImages="getImages" @getShopIntroduce="getShopIntroduce" @getShopInfo="getShopInfo"/>
                 </div>
             </div>
-            <div class="curr-saveInfo">
-                <span class="curr-save" @click="saveShopInfo">添加</span>
-            </div>
+            <ShopSaveInfo :shopFormInfo = "shopFormInfo" :shopUpImgs="shopUpImgs" :isAdd = isAdd :shopIntroduceInfo="shopIntroduceInfo"
+                          @clearData="clearData" :isClearData="isClearData"/>
         </div>
     </div>
 </template>
 
 <script>
-    import {subAddShopInfo,subShopInfoImgs} from '../../../api'
+
     import {mapState} from 'vuex'
+    import Add_changeShopInfo from '../../../components/Add_changeShopInfo/Add_changeShopInfo'
+    import ShopSaveInfo from '../../../components/ShopSaveInfo/ShopSaveInfo'
+    /*
+    import tinymce from 'tinymce/tinymce'
+    import 'tinymce/themes/modern/theme'
+    import Editor from '@tinymce/tinymce-vue'
+    import 'tinymce/plugins/image'
+    import 'tinymce/plugins/link'
+    import 'tinymce/plugins/code'
+    import 'tinymce/plugins/table'
+    import 'tinymce/plugins/lists'
+    import 'tinymce/plugins/contextmenu'
+    import 'tinymce/plugins/wordcount'
+    import 'tinymce/plugins/colorpicker'
+    import 'tinymce/plugins/textcolor'
+    */
     export default {
+        components:{
+           // Editor
+            Add_changeShopInfo,
+            ShopSaveInfo
+        },
         data(){
             return {
-                shopInfoData:{
+                isAdd:true,//添加true，修改false
+                /*
+                tinymceHtml: '请输入内容',
+                init: {
+                    language_url: './static/tinymce/langs/zh_CN.js',
+                    language: 'zh_CN',
+                    skin_url: '/static/tinymce/skins/lightgray',
+                    height: 300,
+                    plugins: 'link lists image code table colorpicker textcolor wordcount contextmenu',
+                    toolbar: 'bold italic underline strikethrough | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | undo redo | link unlink image code | removeformat',
+                    branding: false
+                }
+                */
+                shopFormInfo:{
                     name:'',
                     brand:'',
                     classify:'',
@@ -84,87 +61,47 @@
                     isShelf:0,
                     introduce:''
                 },
-                imgObjs:[],//上传的图片
-                imgSrcArr:[],//图片本地路径数组
+                shopUpImgs:[],//子组件传递的商品图片对象组
+                shopIntroduceInfo:{},//子组件传递的商品介绍对象
+                isClearData:false,//是否清除图片
             }
         },
        methods:{
-            /*保存商品信息*/
-           saveShopInfo(){
-               //console.log(window.CKEDITOR.instances)
-              // window.CKEDITOR.tools.callFunction(1,'../NewImg/20190103164155.png','')
-              // console.log(window.CKEDITOR.tools.callFunction())
-               let {shopInfoData,imgObjs} = this
-               if(!shopInfoData.name.trim()){
-                   console.log()
-                   alert('商品名称不能为空！')
-                   return
-               }
-               if(!shopInfoData.brand.trim()){
-                   alert('品牌不能为空')
-                   return
-               }
-               if(!shopInfoData.classify.trim()){
-                   alert('分类必须选择')
-                   return
-               }
-               if(!shopInfoData.price.trim()){
-                   alert('价格不能为空')
-                   return
-               }
-               let shopInfoDataStr = JSON.stringify(shopInfoData)
-               subAddShopInfo(shopInfoDataStr)
-               subShopInfoImgs(imgObjs)
-               /*清空界面数据*/
-               this.shopInfoData.name = ''
-               this.shopInfoData.brand = ''
-               this.shopInfoData.classify = ''
-               this.shopInfoData.price = ''
-               this.shopInfoData.isShelf = 0
-               this.shopInfoData.introduce = ''
-               this.imgSrcArr = []
-               this.imgObjs = []
-               //console.log(this.shopInfoData)
+           /*接收子组件传递过来的商品信息*/
+           getShopInfo(value){
+               this.shopFormInfo = value
+               console.log(value)
            },
-           /*添加商品图*/
-           selectShopImg(){
-               let fileDom = this.$refs.shopImg
-               let {imgObjs,imgSrcArr} = this
-               let imgsLength = 3
-               this.$zj_globalMethods.previewImg(fileDom,imgsLength,imgObjs,imgSrcArr)
+           /*接收子组件传递过来的图片*/
+           getImages(value){
+               this.shopUpImgs = value
+               console.log(value)
            },
-           /*点击删除图片*/
-           delPreviewImg(e){
-               this.$zj_globalMethods.delPreviewImg(e,this.imgSrcArr,this.imgObjs,this.$refs.shopImg)
+           /*接收子组件传递过来的商品介绍*/
+           getShopIntroduce(value){
+               this.shopIntroduceInfo = value
+               console.log(value)
            },
+           /*清除商品图片*/
+           clearData(value){
+               console.log(value)
+               this.isClearData = value
+           }
+
        },
         computed:{
             ...mapState(['shopClassifys'])
         },
         mounted() {
-            //window.CKEDITOR.replace("editor", { width: "100%", toolbar: "Full"})
-            window.CKEDITOR.replace( 'editor', {
-               //filebrowserBrowseUrl: 'http://47.96.230.239:8088/page/UploadImg.ashx',
-               //filebrowserUploadUrl: 'http://47.96.230.239:8088/page/UploadImg.ashx',
-                width: "100%", toolbar: "Full"
-            })
-           //window.CKEDITOR.tools.callFunction(1,'../NewImg/20190103164155.png','')
-
+            let that = this
+            this.$zj_globalMethods.judgeUserInfo(that)
         }
     }
 </script>
 
 <style lang="less" type="text/less">
-    @import "../../../../public/common/less/common";
-    .isShelf_short{
-        width:60px !important;
-    }
-    .cke_chrome{
-        margin-top:10px !important;
-    }
-    .cke_top{
-        width:100% !important;
-    }
+    //@import "../../../../public/common/less/common";
+
 
 
 </style>

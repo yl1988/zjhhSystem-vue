@@ -7,7 +7,10 @@ import {
     RECEIVE_CHECKSHOP,
     RECEIVE_PAINTERLISTS,
     RECEIVE_CHECKPAINTER,
-    REVEIVE_OILPAINTINGLISTS
+    RECEIVE_OILPAINTINGLISTS,
+    RECEIVE_PERSONLISTS,
+    SUBCHECK_PERSONINFO,
+    SUBCHECK_OILPAINTINGINFO
 } from './mutation-type'
 
 export default {
@@ -40,7 +43,21 @@ export default {
         //console.log( shopLists)
         state.painterLists = painterLists
     },
-    [REVEIVE_OILPAINTINGLISTS](state,{oilpaintingLists}){//油画列表
-        state.oilpaintingLists = oilpaintingLists
-    }
+    
+    [RECEIVE_PERSONLISTS](state,{personLists}){//人员管理列表
+        console.log(personLists)
+        state.personLists = personLists
+    },
+    [SUBCHECK_PERSONINFO](state,{personLists}){//人员查询
+        console.log(personLists)
+        state.personLists = personLists
+    },
+    [RECEIVE_OILPAINTINGLISTS](state,{oilPaintingLists}){//油画列表
+        console.log(oilPaintingLists)
+        state.oilPaintingLists = oilPaintingLists
+    },
+    [SUBCHECK_OILPAINTINGINFO](state,{oilPaintingLists}){//油画查询
+        console.log(oilPaintingLists)
+        state.oilPaintingLists = oilPaintingLists
+    },
 }

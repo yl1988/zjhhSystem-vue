@@ -8,7 +8,10 @@ import {
     RECEIVE_CHECKSHOP,
     RECEIVE_PAINTERLISTS,
     RECEIVE_CHECKPAINTER,
-    REVEIVE_OILPAINTINGLISTS
+    RECEIVE_OILPAINTINGLISTS,
+    RECEIVE_PERSONLISTS,
+    SUBCHECK_PERSONINFO,
+    SUBCHECK_OILPAINTINGINFO
 
 } from './mutation-type'
 import {
@@ -18,7 +21,6 @@ import {
     reqCurriList,
     reqDefault,
     reqForms,
-    reqLogin,
     reqShops,
     reqSystem,
     reqShopClassify,
@@ -27,7 +29,10 @@ import {
     subCheckShop,
     reqPainterList,
     subCheckPainter,
-    reqOilpaintingLists
+    reqOilPaintingLists,
+    reqPersonLists,
+    reqCheckPersonInfo,
+    reqCheckOilPainting
 } from '../api'
 
 export default {
@@ -76,6 +81,8 @@ export default {
         if(result.code === 0){
             const shopLists = result.shopLists
             commit(RECEIVE_CHECKSHOP,{shopLists})
+        }else {
+            return false
         }
     },
     /*异步获取画家列表信息*/
@@ -98,11 +105,43 @@ export default {
         }
     },
     /*异步获取油画列表信息*/
-    async getOilpaintingLists ({commit}){
-        const result = await reqOilpaintingLists()
+    async getOilPaintingLists ({commit}){
+        const result = await reqOilPaintingLists()
         if(result.code===0){
-            const oilpaintingLists = result.oilpaintingLists
-            commit(REVEIVE_OILPAINTINGLISTS,{oilpaintingLists})
+            const oilPaintingLists = result.oilPaintingLists
+            commit(RECEIVE_OILPAINTINGLISTS,{oilPaintingLists})
+        }
+    },
+    /*异步查询油画*/
+    async getCheckOilPainting ({commit},{name,classify}) {
+        //console.log(selectClassify)
+        const result = await reqCheckOilPainting(name,classify)
+        console.log(result)
+        if(result.code === 0){
+            const oilPaintingLists = result.oilPaintingLists
+            commit(SUBCHECK_OILPAINTINGINFO,{oilPaintingLists})
+        }
+    },
+
+    /*异步获取人员列表信息*/
+    async getPersonLists ({commit}){
+        const result = await reqPersonLists()
+        console.log(result)
+        if(result.code===0){
+            const personLists = result.personLists
+            commit(RECEIVE_PERSONLISTS,{personLists})
+        }
+    },
+    /*异步查询人员信息*/
+    async getCheckPersonInfo ({commit},{checkPersonDataStr}){
+        const result = await reqCheckPersonInfo(checkPersonDataStr)
+        console.log(result)
+        if(result.code===0){
+            const personLists = result.personLists
+            commit(SUBCHECK_PERSONINFO,{personLists})
+        }else {
+            const personLists = {}
+            commit(SUBCHECK_PERSONINFO,{personLists})
         }
     }
 

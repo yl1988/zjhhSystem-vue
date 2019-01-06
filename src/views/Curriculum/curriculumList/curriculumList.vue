@@ -56,21 +56,25 @@
             }
         },
         mounted() {
-            this.$nextTick(()=>{
-                /*先从本地读取数据*/
-                let item = 'currListInfo'
-                let currListInfo = this.$zj_globalMethods.getLocalStorage(item)
-                //console.log(currListInfo)
-                if(currListInfo){
-                    this.currListInfo =currListInfo
-                    //console.log(this.currListInfo)
-                } else{
-                    this.currListInfo = this.currLists[0].contents[0].currListInfo
-                   // console.log(this.currListInfo)
-                }
+            let that = this
+            let isLogin = this.$zj_globalMethods.judgeUserInfo(that)
+            if(isLogin){
+                this.$nextTick(()=>{
+                    /*先从本地读取数据*/
+                    let item = 'currListInfo'
+                    let currListInfo = this.$zj_globalMethods.getLocalStorage(item)
+                    //console.log(currListInfo)
+                    if(currListInfo){
+                        this.currListInfo =currListInfo
+                        //console.log(this.currListInfo)
+                    } else{
+                        this.currListInfo = this.currLists[0].contents[0].currListInfo
+                        // console.log(this.currListInfo)
+                    }
 
+                })
+            }
 
-            })
         }
     }
 </script>

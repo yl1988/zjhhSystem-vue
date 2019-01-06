@@ -15,6 +15,7 @@
 </script>
 
 <style lang="less" type="text/less">
+  @import "../public/common/less/common";
   #app{
     height:100%;
   }

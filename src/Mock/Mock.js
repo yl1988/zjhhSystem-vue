@@ -1,6 +1,92 @@
 
 import Mock from 'mockjs'
 import data from './data.json'
+
+
+let userInfo = [
+    {
+        info:{
+            name:'123',
+            pwd:'123',
+        },
+        islogin:1
+    },
+    {
+        info:{
+            name:'123',
+            pwd:'123',
+        },
+        islogin:1
+    },
+    {
+        info:{
+            name:'456',
+            pwd:'456',
+        },
+        islogin:0
+    },
+    {
+        info:{
+            name:'789',
+            pwd:'789',
+        },
+        islogin:1
+    },
+    {
+        info:{
+            name:'abc',
+            pwd:'abc',
+        },
+        islogin:1
+    },
+]
+//登录
+Mock.mock(/getlogin/,function (options) {
+    console.log(options)
+    let body = JSON.parse(options.body)
+    console.log(body)
+    let {name,pwd} = body
+        name = name.toString()
+        pwd = pwd.toString()
+    let code = 0
+    //console.log(userInfo)
+    for(let i=0;i<userInfo.length;i++){
+        if(userInfo[i].info.name === name){
+            if(userInfo[i].info.pwd === pwd){
+                console.log(userInfo[i].info.pwd)
+                code = 0
+                userInfo[i].islogin = 0
+                break
+            }
+        }else {
+            code =1
+        }
+    }
+    console.log(userInfo)
+    return {
+        code:code
+    }
+
+})
+/*判断用户是否登录*/
+Mock.mock('/islogin',function (options) {
+    console.log(options)
+    let body = JSON.parse(options.body)
+    let {name,pwd} = body
+    name = name.toString()
+    pwd = pwd.toString()
+    let code = 1
+    for(let i=0;i<userInfo.length;i++){
+        if(userInfo[i].info.name === name){
+            if(userInfo[i].info.pwd === pwd){
+                if(userInfo[i].islogin === 0){
+                   code = 0
+                }
+            }
+        }
+    }
+    return code
+})
 /*返回课程列表信息*/
 Mock.mock('/curriculum/curriculumlist',{
     code:0,
@@ -363,6 +449,13 @@ Mock.mock(/^\/addShopInfo/,function (options) {
 Mock.mock(/shopImgs/,function (options) {
     console.log(options)
 })
+/*接收商品上下架操作信息*/
+Mock.mock(/shopShelfOption/,function (options) {
+    console.log(options)
+    return{
+        code:0
+    }
+})
 /*接收前台发送过来的画家信息*/
 Mock.mock(/painterInfo/,function (options) {
     console.log(options)
@@ -411,7 +504,7 @@ Mock.mock(/oilpatingImg/,function (options) {
 Mock.mock(/checkshop/,function (options) {
     console.log(options)
     return {
-        code:0,
+        code:1,
         shopLists:[
             {
                 name:Mock.Random.cname(),
@@ -541,50 +634,79 @@ Mock.mock(/checkpainter/,function (options) {
         ]
     }
 })
+/*接收画家上下架操作信息*/
+Mock.mock(/painterShelfOption/,function (options) {
+    console.log(options)
+    return{
+        code:0
+    }
+})
 /*返回油画列表信息*/
 Mock.mock('/shops/oilpaintinglists',{
     code:0,
-    oilpaintingLists:[
+    oilPaintingLists:[
         {
             painterName:Mock.Random.cname(),
             title:Mock.Random.cname(),
+            material:Mock.Random.cname(),
             isShelf:Mock.Random.integer(0,1),
+            'size|20-100':1,
             id:'0'
         },
         {
             painterName:Mock.Random.cname(),
             title:Mock.Random.cname(),
+            material:Mock.Random.cname(),
             isShelf:Mock.Random.integer(0,1),
+            'size|20-100':1,
             id:'0'
         },
         {
             painterName:Mock.Random.cname(),
             title:Mock.Random.cname(),
+            material:Mock.Random.cname(),
             isShelf:Mock.Random.integer(0,1),
+            'size|20-100':1,
             id:'0'
         },
         {
             painterName:Mock.Random.cname(),
             title:Mock.Random.cname(),
+            material:Mock.Random.cname(),
             isShelf:Mock.Random.integer(0,1),
+            'size|20-100':1,
             id:'0'
         },
         {
             painterName:Mock.Random.cname(),
             title:Mock.Random.cname(),
+            material:Mock.Random.cname(),
             isShelf:Mock.Random.integer(0,1),
+            'size|20-100':1,
             id:'0'
         },
         {
             painterName:Mock.Random.cname(),
             title:Mock.Random.cname(),
+            material:Mock.Random.cname(),
             isShelf:Mock.Random.integer(0,1),
+            'size|20-100':1,
             id:'0'
         },
         {
             painterName:Mock.Random.cname(),
             title:Mock.Random.cname(),
+            material:Mock.Random.cname(),
             isShelf:Mock.Random.integer(0,1),
+            'size|20-100':1,
+            id:'0'
+        },
+        {
+            painterName:Mock.Random.cname(),
+            title:Mock.Random.cname(),
+            material:Mock.Random.cname(),
+            isShelf:Mock.Random.integer(0,1),
+            'size|20-100':1,
             id:'0'
         },
 
@@ -595,7 +717,7 @@ Mock.mock(/checkoilpaitain/,function (options) {
     console.log(options)
     return {
         code:0,
-        oilpaintingLists:[
+        oilPaintingLists:[
             {
                 painterName:Mock.Random.cname(),
                 title:Mock.Random.cname(),
@@ -641,4 +763,168 @@ Mock.mock(/checkoilpaitain/,function (options) {
 
         ]
     }
+})
+/*接油画上下架操作信息*/
+Mock.mock(/oilpaintingShelfOption/,function (options) {
+    console.log(options)
+    return{
+        code:0
+    }
+})
+
+/*返回人员列表信息*/
+Mock.mock('/system/personnelmanagement',{
+    code:0,
+    personLists:[
+        {
+            name:Mock.Random.cname(),
+            loginName:Mock.Random.cname(),
+            gender:Mock.Random.integer(0,1),
+            isQuit:Mock.Random.integer(0,1),
+            loginPwd:'XXXXXXXXXX',
+            id:'0'
+        },
+        {
+            name:Mock.Random.cname(),
+            loginName:Mock.Random.cname(),
+            gender:Mock.Random.integer(0,1),
+            isQuit:Mock.Random.integer(0,1),
+            loginPwd:'XXXXXXXXXX',
+            id:'0'
+        },
+        {
+            name:Mock.Random.cname(),
+            loginName:Mock.Random.cname(),
+            gender:Mock.Random.integer(0,1),
+            isQuit:Mock.Random.integer(0,1),
+            loginPwd:'XXXXXXXXXX',
+            id:'0'
+        },
+        {
+            name:Mock.Random.cname(),
+            loginName:Mock.Random.cname(),
+            gender:Mock.Random.integer(0,1),
+            isQuit:Mock.Random.integer(0,1),
+            loginPwd:'XXXXXXXXXX',
+            id:'0'
+        },
+        {
+            name:Mock.Random.cname(),
+            loginName:Mock.Random.cname(),
+            gender:Mock.Random.integer(0,1),
+            isQuit:Mock.Random.integer(0,1),
+            loginPwd:'XXXXXXXXXX',
+            id:'0'
+        },
+        {
+            name:Mock.Random.cname(),
+            loginName:Mock.Random.cname(),
+            gender:Mock.Random.integer(0,1),
+            isQuit:Mock.Random.integer(0,1),
+            loginPwd:'XXXXXXXXXX',
+            id:'0'
+        },
+        {
+            name:Mock.Random.cname(),
+            loginName:Mock.Random.cname(),
+            gender:Mock.Random.integer(0,1),
+            isQuit:Mock.Random.integer(0,1),
+            loginPwd:'XXXXXXXXXX',
+            id:'0'
+        },
+        {
+            name:Mock.Random.cname(),
+            loginName:Mock.Random.cname(),
+            gender:Mock.Random.integer(0,1),
+            isQuit:Mock.Random.integer(0,1),
+            loginPwd:'XXXXXXXXXX',
+            id:'0'
+        },
+        {
+            name:Mock.Random.cname(),
+            loginName:Mock.Random.cname(),
+            gender:Mock.Random.integer(0,1),
+            isQuit:Mock.Random.integer(0,1),
+            loginPwd:'XXXXXXXXXX',
+            id:'0'
+        },
+
+
+    ]
+})
+/*接收前台发送过来的人员信息*/
+Mock.mock(/personInfo/,function (options) {
+    console.log(options)
+})
+/*人员查询*/
+Mock.mock(/checkperson/,function (options) {
+    let personLists = [
+        {
+            name:'张三',
+            loginName:'zhangsan',
+            gender:0,
+            isQuit:0,
+            loginPwd:'XXXXXXXXXX',
+            id:'0'
+        },
+        {
+            name:'李四',
+            loginName:'lisi',
+            gender:1,
+            isQuit:0,
+            loginPwd:'zzzdddd',
+            id:'0'
+        },
+        {
+            name:'王二',
+            loginName:'wanger',
+            gender:0,
+            isQuit:1,
+            loginPwd:'drerferee',
+            id:'0'
+        },
+        {
+            name:'麻子',
+            loginName:'mazi',
+            gender:1,
+            isQuit:0,
+            loginPwd:'XdefedfeXXXX',
+            id:'0'
+        },
+        ]
+    //console.log(options)
+    let body = JSON.parse(options.body)
+    let checkPersonData = JSON.parse(body.checkPersonData)
+    console.log(checkPersonData)
+    let name = checkPersonData.name
+    let gender = checkPersonData.gender
+    let isQuit = checkPersonData.isQuit
+    //console.log(checkPersonData)
+    let personInfo = {
+        code:1,
+        info:{}
+    }
+    if(name && !gender && !isQuit){
+        for(let i=0;i<personLists.length;i++){
+            if(personLists[i].name === name){
+                personInfo.info = personLists[i]
+                personInfo.code = 0
+               break
+            }
+        }
+    }else if(name && gender && isQuit){
+        for(let i=0;i<personLists.length;i++){
+            if(personLists[i].name === name){
+                if(personLists[i].gender === parseInt(gender)){
+                    if(personLists[i].isQuit=== parseInt(isQuit)){
+                        personInfo.info = personLists[i]
+                        personInfo.code = 0
+                        break
+                    }
+                }
+            }
+        }
+    }
+
+   return personInfo
 })

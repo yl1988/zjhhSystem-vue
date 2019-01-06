@@ -17,6 +17,10 @@
             }
         },
         methods: {
+        },
+        mounted(){
+            let that = this
+            let isLogin = this.$zj_globalMethods.judgeUserInfo(that)
         }
     }
 </script>

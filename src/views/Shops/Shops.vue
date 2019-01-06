@@ -49,7 +49,10 @@
         methods: {
         },
         mounted() {
-           this.$store.dispatch('getShopClassify')
+            let that = this
+            let isLogin = this.$zj_globalMethods.judgeUserInfo(that)
+            console.log(isLogin)
+           isLogin && this.$store.dispatch('getShopClassify')
         }
     }
 </script>

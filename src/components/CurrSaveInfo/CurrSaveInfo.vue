@@ -11,7 +11,7 @@
     export default {
         props:{
             currUpImgs:Object,
-            currFormInfo:Object
+            currFormInfo:Object,
         },
         data(){
             return{

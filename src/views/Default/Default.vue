@@ -20,7 +20,12 @@
 </template>
 
 <script>
-    export default {}
+    export default {
+        mounted() {
+            let that = this
+            this.$zj_globalMethods.judgeUserInfo(that)
+        }
+    }
 </script>
 
 <style lang="less" type="text/less">

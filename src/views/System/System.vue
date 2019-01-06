@@ -20,10 +20,6 @@
                         path:'/system/personnelmanagement'
                     },
                     {
-                        title:'添加人员',
-                        path:'/system/addpersonnel'
-                    },
-                    {
                         title: '用户管理',
                         path: '/system/usermanagement'
                     }
@@ -31,6 +27,10 @@
             }
         },
         methods: {
+        },
+        mounted(){
+            let that = this
+            let isLogin = this.$zj_globalMethods.judgeUserInfo(that)
         }
     }
 </script>

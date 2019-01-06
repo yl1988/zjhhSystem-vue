@@ -175,6 +175,17 @@ body {
   text-indent: 14px;
   cursor: pointer;
 }
+/*返回按钮*/
+.backBtn {
+  width: 50px;
+  margin-top: 0;
+}
+.backBtn span {
+  width: 60px;
+  text-align: center;
+  letter-spacing: 3px;
+  text-indent: 3px;
+}
 /*信息明细表*/
 .addInfoBoxDiv {
   text-align: center;
@@ -419,5 +430,9 @@ body {
 }
 .listInfoContentLiBox:nth-of-type(11) {
   background: #f3e9ff;
+}
+/*取消修改按钮*/
+.goBackBtn {
+  margin-left: 20px;
 }
 /*# sourceMappingURL=common.css.map */

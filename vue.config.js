@@ -1,6 +1,12 @@
+const path = require('path')
+function resolve(dir){
+    return path.join(__dirname,dir)
+}
 module.exports = {
+
     // 基本路径
-    baseUrl: '/',
+    baseUrl: './',
+    //assetsPublicPath:'statics',
     // 输出文件目录
     outputDir: 'dist',
     // eslint-loader 是否在保存的时候检查
@@ -10,7 +16,7 @@ module.exports = {
     chainWebpack: () => { },
     configureWebpack: () => { },
     // 生产环境是否生成 sourceMap 文件
-    productionSourceMap: true,
+    productionSourceMap: false,
     // css相关配置
     css: {
         // 是否使用css分离插件 ExtractTextPlugin
@@ -37,17 +43,27 @@ module.exports = {
         hotOnly: false,                             // https:{type:Boolean}
         //proxy: null,                                // 设置代理
         //proxy: 'http://:8088',           // 配置跨域处理,只有一个代理
-        // proxy: {                                 // 配置多个代理
-        //     '/api': {
-        //         target: '<url>',
-        //         ws: true,
-        //         changeOrigin: true
-        //     },
+        /*proxy: {                                 // 配置多个代理
+            '/api': {
+                target: '',
+                ws: true,
+                changeOrigin: true
+            }
         //     '/foo': {
         //         target: '<other_url>'
         //     }
-        // },
-        before: app => { }
+         },
+        before: app => { }*/
+    },
+    /*
+    build:{
+        index:path.resolve(__dirname,'../dist/index.html'),
+        assetsRoot:path.resolve(__dirname,'..dist'),
+        assetsSubDirecory:'static'
+    }*/
+    /*
+    build:{
+        assetsPublicPath:'./'
     },
     // 第三方插件配置
     pluginOptions: {

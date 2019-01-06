@@ -33,7 +33,11 @@
         methods: {
         },
         mounted() {
-            this.$store.dispatch('getCurrLists')
+            let that = this
+            let isLogin = this.$zj_globalMethods.judgeUserInfo(that)
+            console.log(isLogin)
+            isLogin && this.$store.dispatch('getCurrLists')
+
         }
     }
 </script>

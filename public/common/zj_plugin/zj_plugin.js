@@ -1,3 +1,5 @@
+import {islogin} from "../../../src/api";
+
 export default {
     install(Vue,options){
         Vue.prototype.$zj_globalMethods={
@@ -59,14 +61,15 @@ export default {
                     return JSON.parse(window.localStorage.getItem(item))
                 }
             },
-            /*上传图片并预览*/
-            previewImg:function(fileDom,imgsLength,imgObjs,imgSrcArr) {
+            /*图片并预览*/
+            previewImg:function(fileDom,imgSrcArr) {
                 if (!(window.File || window.FileReader || window.FileList || window.Blob)) {//判断是否支持file
                     alert('该浏览器不支持,请换用高版本浏览器！')
                 }
                 //let inputDOM = this.$refs.fileRef
                 // 通过DOM取文件数据
                 this.fil = fileDom.files
+                //console.log(this.fil[0])
                 let size = Math.floor(this.fil[0].size / 1024)//图片大小
                 /*判断格式*/
                 let jpgImgTest =/\/jpeg$/,
@@ -81,17 +84,21 @@ export default {
                         return false
                     }
                 }
-                if(imgObjs.length<imgsLength){
+                //console.log(imgObjs.length)
+                //if(imgObjs.length<imgsLength){
                     //将上传的图片添加到图片数组对象中
-                    let imgObj = {}
-                    imgObj = this.fil
-                    imgObjs.push(imgObj)
+                    //let imgObj = {}
+                    //imgObj = this.fil
+                    //console.log(imgObj)
+                    //imgObjs.push(imgObj)
+                    //console.log(imgObjs)
                     /*生成图片路径数组*/
-                    let imgSrc=URL.createObjectURL(this.fil[0])
-                    imgSrcArr.push(imgSrc)
-                }
-                console.log(imgSrcArr)//图片本地预览路径数组
-                console.log(imgObjs)//图片对象数组
+
+               // }
+                let imgSrc=URL.createObjectURL(this.fil[0])
+                imgSrcArr.push(imgSrc)
+                //console.log(imgSrcArr)//图片本地预览路径数组
+                //console.log(imgObjs)//图片对象数组
                 fileDom.value = ''//清空File对象
 
             },
@@ -104,6 +111,28 @@ export default {
                 imgObjs.splice(index,1)
                 fileDom.value = ''//清空File对象
             },
+            /*判断用户是否登录*/
+            judgeUserInfo(that){
+                let usrInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+                let {name,pwd} = usrInfo
+                return islogin(name,pwd).then((data)=>{
+                    //console.log(data)
+                    if(parseInt(data) === 1){//未登录
+                        //console.log('未登录')
+                        //console.log(data)
+                        that.$router.replace('/login',{name,pwd})
+                        return false
+                    }else {//登录
+                        //console.log('登录')
+                        //console.log(data)
+                        return true
+                    }
+                })
+               // console.log(result)
+
+
+            },
+            /*商品上下架*/
         },
 
 

@@ -32,7 +32,7 @@
                     case '/curriculum/appointment':
                         break
                 }
-                console.log(this.$route.path)
+                //console.log(this.$route.path)
             }
         },
         computed:{
@@ -40,6 +40,7 @@
         },
         mounted(){
            // console.log(this.$route.path)
+           // console.log(this.menuTitleData)
             this.$nextTick(()=>{
                 this.getFirst()
             })

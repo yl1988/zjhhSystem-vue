@@ -55,7 +55,8 @@
             }
         },
         mounted(){
-            console.log(this.currFormInfo)
+            let that = this
+            this.$zj_globalMethods.judgeUserInfo(that)
         }
     }
 </script>

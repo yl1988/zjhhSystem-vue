@@ -78,7 +78,12 @@
             ...mapState(['appoinLists'])
         },
         mounted(){
-            this.contents= this.appoinLists[0].contents[0]
+            let that = this
+            let isLogin = this.$zj_globalMethods.judgeUserInfo(that)
+            if(isLogin){
+                this.contents= this.appoinLists[0].contents[0]
+            }
+
             this.$nextTick(()=>{
                 //this.$zj_globalMethods.setBkCoror('.appo-table-info')
             })

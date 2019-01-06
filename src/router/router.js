@@ -19,14 +19,13 @@ import PainterLists from '../views/Shops/PainterLists/PainterLists'
 import ShopLists from '../views/Shops/ShopLists/ShopLists'
 
 import System from '../views/System/System'
-import AddPersonnel from '../views/System/AddPersonnel/AddPersonnel'
-import PersonnelManagement from '../views/System/System'
+import PersonnelManagement from '../views/System/PersonnelManagement/PersonnelManagement'
 import UserManagement from '../views/System/UserManagement/UserManagement'
 
 Vue.use(Router)
 
 export default new Router({
-  mode: 'hash',
+ // mode: 'hash',
   base: process.env.BASE_URL,
   routes: [
     {
@@ -171,15 +170,6 @@ export default new Router({
                       navShow:true
                   }
               },
-              {
-                  path:'/system/addpersonnel',
-                  name:'addpersonnel',
-                  component:AddPersonnel,
-                  meta:{
-                      navShow:true
-                  }
-              },
-
               {
                   path:'/system/usermanagement',
                   name:'usermanagement',

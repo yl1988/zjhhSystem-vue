@@ -506,5 +506,6 @@ export default {
     painters:[],//画家列表
     shopLists:[],//商品列表
     painterLists:[],//画家列表
-    oilpaintingLists:[],//油画列表
+    oilPaintingLists:[],//油画列表
+    personLists:[],//人员列表
 }
